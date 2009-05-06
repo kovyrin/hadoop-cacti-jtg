@@ -9,7 +9,7 @@ PreReq
 Installation
 
    Hadoop
-     Enable JMX
+     Enable JMX on Each Hadoop Node
        cd <hadoop>/conf
         vi jmxremote.access
         monitorRole   readonly
@@ -37,7 +37,7 @@ Installation
 
    Cacti
     cd /tmp
-    svn cohttp://www.jointhegrid.com/svn/hadoop-cacti-jtg/trunk/
+    svn co http://www.jointhegrid.com/svn/hadoop-cacti-jtg/trunk/
     cd hadoop-cacti-jtg
     ant jar
     cp dist/hadoop-cacti-jtg.jar <cacti_home>/scripts/
