@@ -1,0 +1,67 @@
+PreReq
+
+	Hadoop System
+		Hadoop (Tested with 0.19.1)
+
+	Cacti System
+		Cacti (Tested with 0.8.7d)
+
+Installation
+
+   Hadoop
+     Enable JMX
+       cd <hadoop>/conf
+        vi jmxremote.access
+        monitorRole   readonly
+        controlRole   readwrite
+
+        vi jmxremote.password
+        monitorRole     passwd
+        controlRole     password
+
+        chmod 600 jmxremote.password
+
+        vi hadoop.env
+        ...
+        export HADOOP_JMX_BASE="-Dcom.sun.management.jmxremote.ssl=false"
+        export HADOOP_JMX_BASE="$HADOOP_JMX_BASE -Dcom.sun.management.jmxremote.password.file=/opt/hadoop-0.19.1/conf/jmxremote.password"
+        export HADOOP_JMX_BASE="$HADOOP_JMX_BASE -Dcom.sun.management.jmxremote.access.file=/opt/hadoop-0.19.1/conf/jmxremote.access"
+
+        # Command specific options appended to HADOOP_OPTS when specified
+        export HADOOP_NAMENODE_OPTS="$HADOOP_JMX_BASE -Dcom.sun.management.jmxremote.port=10001"
+        export HADOOP_SECONDARYNAMENODE_OPTS="$HADOOP_JMX_BASE -Dcom.sun.management.jmxremote.port=10002"
+        export HADOOP_DATANODE_OPTS="$HADOOP_JMX_BASE -Dcom.sun.management.jmxremote.port=10003"
+        export HADOOP_BALANCER_OPTS="$HADOOP_JMX_BASE -Dcom.sun.management.jmxremote.port=10004"
+        export HADOOP_JOBTRACKER_OPTS="$HADOOP_JMX_BASE -Dcom.sun.management.jmxremote.port=10005"
+        ...
+
+   Cacti
+    cd /tmp
+    svn cohttp://www.jointhegrid.com/svn/hadoop-cacti-jtg/trunk/
+    cd hadoop-cacti-jtg
+    ant jar
+    cp dist/hadoop-cacti-jtg.jar <cacti_home>/scripts/
+    cp scripts/*.sh hadoop-cacti-jtg
+
+     Using your cacti web interface, go to the 'Import Template' section
+	   Import hadoop_namenode.xml. It was exported with deps.
+
+
+Testing
+   cd <cacti_home>/scripts/
+   sh FSNamesystemStatus.sh \
+     service:jmx:rmi:///jndi/rmi://10.0.1.2:10001/jmxrmi \
+     controlRole <yourpassword>
+
+   Expected Result:
+    CapacityTotal:2113748992 CapacityUsed:40960 CapacityRemaining:812830720 BlocksTotal:1 FilesTotal:9 numDeadDataNodes:0 numLiveDataNodes:1
+
+Contribute
+
+	Please do!
+
+Support
+
+	http://www.jointhegrid.com
+	Edward Capriolo
+  edlinuxguru@gmail.com
