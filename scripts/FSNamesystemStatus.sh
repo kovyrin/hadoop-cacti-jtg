@@ -1,10 +1,6 @@
 #!/bin/sh
-if [ -z "$CACTI_HOME" ] ; then
-  echo "CACTI_HOME is not defined"
-  exit 1
-fi
 
-JTG_CLASSPATH="${CACTI_HOME}/scripts/hadoop-cacti-jtg.jar"
+JTG_CLASSPATH="`dirname $0`/hadoop-cacti-jtg.jar"
 JTG_CLASSNAME="com.jointhegrid.hadoopjmx.FSNamesystemStatus"
 
 jmxURL=$1
