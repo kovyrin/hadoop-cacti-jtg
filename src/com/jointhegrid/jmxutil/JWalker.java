@@ -62,10 +62,10 @@ public class JWalker {
         System.out.println("JMX Domains");
         for (String domain : connection.getDomains()) {
           System.out.println("domain " + domain);
-        }
+        
 
-        //ObjectName ot = new ObjectName("hadoop.dfs:*");
-        ObjectName ot = new ObjectName(null);
+        ObjectName ot = new ObjectName("hadoop.dfs:*");
+        //ObjectName ot = new ObjectName(null);
 
         Set<ObjectName> names = connection.queryNames(null, null);
         for (ObjectName on : names) {
@@ -99,8 +99,9 @@ public class JWalker {
 
         }
 
-      connector.close();
-
+     
+        }
+         connector.close();
       } catch (IOException ex){
         System.out.println("Connection problem "+ex.toString());
         System.exit(2);
