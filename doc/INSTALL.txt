@@ -45,7 +45,7 @@ Installation
 
      Using your cacti web interface, go to the 'Import Template' section
 	   Import hadoop_namenode.xml. It was exported with deps.
-
+     Import hadoop_datanode.xml. It was exported with deps.
 
 Testing
    cd <cacti_home>/scripts/
