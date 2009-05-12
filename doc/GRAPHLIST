@@ -1,0 +1,7 @@
+NameNode
+   RpcStatisticsForPort-"NumOpenConnections"
+
+   NameNodeStatistics-"SafemodeTime"
+    This value is set on startup it also should be reset when a NameNode leaves
+    safe mode.
+   NameNodeStatistics-"FSImageLoadTime"
