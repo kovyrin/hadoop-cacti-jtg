@@ -65,7 +65,7 @@ public class JWalker {
         }
 
         //ObjectName ot = new ObjectName("hadoop.dfs:*");
-        ObjectName ot = new ObjectName("*");
+        ObjectName ot = new ObjectName(null);
 
         Set<ObjectName> names = connection.queryNames(ot, null);
         for (ObjectName on : names) {
