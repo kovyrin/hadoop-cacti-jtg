@@ -35,6 +35,13 @@ public class JWalker {
   public JWalker() {
   }
 
+  public static void main (String [] args){
+    JWalker j = new JWalker();
+    j.url=args[0];
+    j.user=args[1];
+    j.pass=args[2];
+    j.walk();
+  }
   public void walk() {
 
       JMXServiceURL jmxUrl = null;
