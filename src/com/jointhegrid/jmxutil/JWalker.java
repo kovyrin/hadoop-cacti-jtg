@@ -67,7 +67,7 @@ public class JWalker {
         //ObjectName ot = new ObjectName("hadoop.dfs:*");
         ObjectName ot = new ObjectName(null);
 
-        Set<ObjectName> names = connection.queryNames(ot, null);
+        Set<ObjectName> names = connection.queryNames(null, null);
         for (ObjectName on : names) {
           System.out.println("object name " + on.getCanonicalName());
           MBeanInfo info = connection.getMBeanInfo(on);
