@@ -5,6 +5,6 @@ apache-ant. 'test' is the default target but the project has no test cases, use
 you do not have ANT javac can build the project.
 
 The shell script 'kick off' files may not fit your environment. Cacti calls these
-scripts as 'Data Input Methods' make sure your changes are compatable. 
+scripts as 'Data Input Methods' make sure your changes are compatable.
 
-
+We use hudson to build this project http://www.jointhegrid.com/hudson
