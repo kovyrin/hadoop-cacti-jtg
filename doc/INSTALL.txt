@@ -35,6 +35,7 @@ Installation
         export HADOOP_JOBTRACKER_OPTS="$HADOOP_JMX_BASE -Dcom.sun.management.jmxremote.port=10005"
         ...
 
+        Restart Hadoop
    Cacti
     cd /tmp
     svn co http://www.jointhegrid.com/svn/hadoop-cacti-jtg/trunk/
@@ -48,6 +49,7 @@ Installation
      Import hadoop_datanode.xml. It was exported with deps.
 
 Testing
+
    cd <cacti_home>/scripts/
    sh FSNamesystemStatus.sh \
      service:jmx:rmi:///jndi/rmi://10.0.1.2:10001/jmxrmi \
@@ -56,12 +58,35 @@ Testing
    Expected Result:
     CapacityTotal:2113748992 CapacityUsed:40960 CapacityRemaining:812830720 BlocksTotal:1 FilesTotal:9 numDeadDataNodes:0 numLiveDataNodes:1
 
-Contribute
+Usage
 
-	Please do!
+  Host Templates should exist in cacti
+  1 Hadoop NameNode
+  2 Hadoop DataNode
+
+  Each graph takes three or four parameters. These would be the same
+  values specified in the testing section above.
+
+  1 JMXURL
+  2 user
+  3 pass
+  4 JMXObjectName (not always required)
+
+Using JWalker
+
+  JWalker is a command line JMX walk tool. You can use it like you would use jconsole
+  to dump the properties of JMX. In particular your need this to determing the
+  name of DataNode objects.
+
+  sh JWalker.sh service:jmx:rmi:///jndi/rmi://10.0.1.2:10001/jmxrmi \
+  controlRole <password>
 
 Support
 
 	http://www.jointhegrid.com
 	Edward Capriolo
   edlinuxguru@gmail.com
+
+Contribute
+
+	Please do! Bugs, questions, comments, praise, condemnation Let me know!

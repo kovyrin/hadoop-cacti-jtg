@@ -1,6 +1,17 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+* Copyright 2009 Edward Capriolo
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*   http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
  */
 package com.jointhegrid.jmxutil;
 
@@ -22,10 +33,6 @@ import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXServiceURL;
 
-/**
- *
- * @author ecapriolo
- */
 public class JWalker {
 
   private String url;
@@ -35,37 +42,34 @@ public class JWalker {
   public JWalker() {
   }
 
-  public static void main (String [] args){
+  public static void main(String[] args) {
     JWalker j = new JWalker();
-    j.url=args[0];
-    j.user=args[1];
-    j.pass=args[2];
+    j.url = args[0];
+    j.user = args[1];
+    j.pass = args[2];
     j.walk();
   }
+
   public void walk() {
 
-      JMXServiceURL jmxUrl = null;
-      try  {
-        jmxUrl = new JMXServiceURL(url);
-      } catch (MalformedURLException ex){
-        System.out.println("Bad JMX URL."+ex.toString());
-        System.exit(1);
-      }
-      Map m = new HashMap();
-      m.put(JMXConnector.CREDENTIALS, new String[]{user, pass});
-      JMXConnector connector = null;
-      MBeanServerConnection connection = null;
-      try {
-        connector = JMXConnectorFactory.connect(jmxUrl, m);
-        connection = connector.getMBeanServerConnection();
+    JMXServiceURL jmxUrl = null;
+    try {
+      jmxUrl = new JMXServiceURL(url);
+    } catch (MalformedURLException ex) {
+      System.out.println("Bad JMX URL." + ex.toString());
+      System.exit(1);
+    }
+    Map m = new HashMap();
+    m.put(JMXConnector.CREDENTIALS, new String[]{user, pass});
+    JMXConnector connector = null;
+    MBeanServerConnection connection = null;
+    try {
+      connector = JMXConnectorFactory.connect(jmxUrl, m);
+      connection = connector.getMBeanServerConnection();
 
-        System.out.println("JMX Domains");
-        for (String domain : connection.getDomains()) {
-          System.out.println("domain " + domain);
-        
-
-        ObjectName ot = new ObjectName("hadoop.dfs:*");
-        //ObjectName ot = new ObjectName(null);
+      System.out.println("JMX Domains");
+      for (String domain : connection.getDomains()) {
+        System.out.println("domain " + domain);
 
         Set<ObjectName> names = connection.queryNames(null, null);
         for (ObjectName on : names) {
@@ -99,24 +103,21 @@ public class JWalker {
 
         }
 
-     
-        }
-         connector.close();
-      } catch (IOException ex){
-        System.out.println("Connection problem "+ex.toString());
-        System.exit(2);
-      } catch (MalformedObjectNameException ex){
-        System.out.println("MalformedObjectName "+ex.toString());
-        System.exit(2);
-      } catch (InstanceNotFoundException ex){
-        System.out.println("InstanceNotFound "+ex.toString());
-        System.exit(2);
-      } catch (IntrospectionException ex){
-        System.out.println("InstanceNotFound "+ex.toString());
-        System.exit(2);
-      } catch (ReflectionException ex){
-        System.out.println("ReflectionException "+ex.toString());
-        System.exit(2);
+
       }
+      connector.close();
+    } catch (IOException ex) {
+      System.out.println("Connection problem " + ex.toString());
+      System.exit(2);
+    } catch (InstanceNotFoundException ex) {
+      System.out.println("InstanceNotFound " + ex.toString());
+      System.exit(2);
+    } catch (IntrospectionException ex) {
+      System.out.println("InstanceNotFound " + ex.toString());
+      System.exit(2);
+    } catch (ReflectionException ex) {
+      System.out.println("ReflectionException " + ex.toString());
+      System.exit(2);
+    }
   }
 }

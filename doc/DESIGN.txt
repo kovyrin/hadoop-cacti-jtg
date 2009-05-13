@@ -1,0 +1,18 @@
+Hadoop is under heavy development, JMX objects and attributes are appearing and
+vanishing. This monitoring implementation was target to be used by cacti. By
+design the classes return non zero status or throw exception. This was done to
+avoid complicated abstractions. 
+
+The likely cause of an error is a missing JMX variable. You can use the JWalker
+tool to probe your Hadoop systems. Then you can change the constructor of the
+effected object.
+
+ public FSDatasetStatus(){
+    wantedVariables = new String[] {
+    "Remaining",
+    "Capacity",
+    "DfsUsed" };
+    wantedOperations = new String [] {};
+  }
+
+Changes to the Java Objects may require changes to Cacti components.
