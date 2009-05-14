@@ -1,7 +1,7 @@
-<cacti>
+<cacti>	
 	<hash_0200181e03d28ce8f1fdbb5d38b4560f9e089c>
 		<name>Hadoop NameNode</name>
-		<graph_templates>hash_000018c2d57c93c48498dcceb46997fdb138a3|hash_000018c5bdd607de8d7cd1a5c3f95af0e93932|hash_000018f7b896d3b713a9c4009366515e461036|hash_00001878466b8202b6ee700a341106d27b269b</graph_templates>
+		<graph_templates>hash_000018c2d57c93c48498dcceb46997fdb138a3|hash_000018c5bdd607de8d7cd1a5c3f95af0e93932|hash_000018f7b896d3b713a9c4009366515e461036|hash_00001878466b8202b6ee700a341106d27b269b|hash_0000189933b3d89ac5a5e6cec93211bf4f4c23</graph_templates>
 		<data_queries></data_queries>
 	</hash_0200181e03d28ce8f1fdbb5d38b4560f9e089c>
 	<hash_000018c2d57c93c48498dcceb46997fdb138a3>
@@ -590,6 +590,109 @@
 			</hash_090018e6bb38eea8d4ff6fd05d74119b07f580>
 		</inputs>
 	</hash_00001878466b8202b6ee700a341106d27b269b>
+	<hash_0000189933b3d89ac5a5e6cec93211bf4f4c23>
+		<name>Hadoop - RpcStatisticsForPort - NumOpenConnections</name>
+		<graph>
+			<t_title>on</t_title>
+			<title>|host_description| - Hadoop - RpcStatisticsForPort - NumOpenConnections</title>
+			<t_image_format_id></t_image_format_id>
+			<image_format_id>1</image_format_id>
+			<t_height></t_height>
+			<height>120</height>
+			<t_width></t_width>
+			<width>500</width>
+			<t_slope_mode></t_slope_mode>
+			<slope_mode>on</slope_mode>
+			<t_auto_scale></t_auto_scale>
+			<auto_scale>on</auto_scale>
+			<t_auto_scale_opts></t_auto_scale_opts>
+			<auto_scale_opts>2</auto_scale_opts>
+			<t_auto_scale_log></t_auto_scale_log>
+			<auto_scale_log></auto_scale_log>
+			<t_scale_log_units></t_scale_log_units>
+			<scale_log_units></scale_log_units>
+			<t_auto_scale_rigid></t_auto_scale_rigid>
+			<auto_scale_rigid></auto_scale_rigid>
+			<t_auto_padding></t_auto_padding>
+			<auto_padding>on</auto_padding>
+			<t_export></t_export>
+			<export>on</export>
+			<t_upper_limit></t_upper_limit>
+			<upper_limit>100</upper_limit>
+			<t_lower_limit></t_lower_limit>
+			<lower_limit>0</lower_limit>
+			<t_base_value></t_base_value>
+			<base_value>1000</base_value>
+			<t_unit_value></t_unit_value>
+			<unit_value></unit_value>
+			<t_unit_exponent_value></t_unit_exponent_value>
+			<unit_exponent_value></unit_exponent_value>
+			<t_vertical_label></t_vertical_label>
+			<vertical_label></vertical_label>
+		</graph>
+		<items>
+			<hash_1000187a3835e3025aeb006a9fb89bdae78de1>
+				<task_item_id>hash_080018c6b2ac4c2aab6aa779132abbb7e5b566</task_item_id>
+				<color_id>4444FF</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>7</graph_type_id>
+				<consolidation_function_id>1</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060018e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>NumOpenConnections</text_format>
+				<hard_return></hard_return>
+				<sequence>1</sequence>
+			</hash_1000187a3835e3025aeb006a9fb89bdae78de1>
+			<hash_1000185567d1f30a41c951fc5359512216dae0>
+				<task_item_id>hash_080018c6b2ac4c2aab6aa779132abbb7e5b566</task_item_id>
+				<color_id>0</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>4</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060018e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>Current:</text_format>
+				<hard_return></hard_return>
+				<sequence>2</sequence>
+			</hash_1000185567d1f30a41c951fc5359512216dae0>
+			<hash_1000184143f6a5d175dc1f5edecdf76177f657>
+				<task_item_id>hash_080018c6b2ac4c2aab6aa779132abbb7e5b566</task_item_id>
+				<color_id>0</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>1</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060018e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>Average:</text_format>
+				<hard_return></hard_return>
+				<sequence>3</sequence>
+			</hash_1000184143f6a5d175dc1f5edecdf76177f657>
+			<hash_1000183990cb665d9ab3f0b9287d5cb210a6d5>
+				<task_item_id>hash_080018c6b2ac4c2aab6aa779132abbb7e5b566</task_item_id>
+				<color_id>0</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>3</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060018e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>Maximum:</text_format>
+				<hard_return>on</hard_return>
+				<sequence>4</sequence>
+			</hash_1000183990cb665d9ab3f0b9287d5cb210a6d5>
+		</items>
+		<inputs>
+			<hash_0900184d2917b205f3844c4a92637b47642b2f>
+				<name>Data Source [NumOpenConnections]</name>
+				<description></description>
+				<column_name>task_item_id</column_name>
+				<items>hash_0000187a3835e3025aeb006a9fb89bdae78de1|hash_0000185567d1f30a41c951fc5359512216dae0|hash_0000184143f6a5d175dc1f5edecdf76177f657|hash_0000183990cb665d9ab3f0b9287d5cb210a6d5</items>
+			</hash_0900184d2917b205f3844c4a92637b47642b2f>
+		</inputs>
+	</hash_0000189933b3d89ac5a5e6cec93211bf4f4c23>
 	<hash_0100185ddf1cbf76144957a1ba0722b15f26f4>
 		<name>Hadoop - NameNode - FSNamesystemStatus</name>
 		<ds>
@@ -721,6 +824,58 @@
 			</item_002>
 		</data>
 	</hash_0100185ddf1cbf76144957a1ba0722b15f26f4>
+	<hash_01001835d475dff8119734fe58cad1ce0e294f>
+		<name>Hadoop - RpcStatisticsForPort - NumOpenConnections</name>
+		<ds>
+			<t_name></t_name>
+			<name>|host_description| - Hadoop - RpcStatisticsForPort - NumOpenConnections</name>
+			<data_input_id>hash_0300180fdbbbb5a4f4bc2a7baf498505e1f3d9</data_input_id>
+			<t_rra_id></t_rra_id>
+			<t_rrd_step></t_rrd_step>
+			<rrd_step>300</rrd_step>
+			<t_active></t_active>
+			<active>on</active>
+			<rra_items>hash_150018c21df5178e5c955013591239eb0afd46|hash_1500180d9c0af8b8acdc7807943937b3208e29|hash_1500186fc2d038fb42950138b0ce3e9874cc60|hash_150018e36f3adb9f152adfa5dc50fd2b23337e</rra_items>
+		</ds>
+		<items>
+			<hash_080018c6b2ac4c2aab6aa779132abbb7e5b566>
+				<t_data_source_name></t_data_source_name>
+				<data_source_name>NumOpenConnections</data_source_name>
+				<t_rrd_minimum></t_rrd_minimum>
+				<rrd_minimum>0</rrd_minimum>
+				<t_rrd_maximum></t_rrd_maximum>
+				<rrd_maximum>0</rrd_maximum>
+				<t_data_source_type_id></t_data_source_type_id>
+				<data_source_type_id>1</data_source_type_id>
+				<t_rrd_heartbeat></t_rrd_heartbeat>
+				<rrd_heartbeat>600</rrd_heartbeat>
+				<t_data_input_field_id></t_data_input_field_id>
+				<data_input_field_id>hash_07001837a6ff66a17d112e3d9afc811da1e1ae</data_input_field_id>
+			</hash_080018c6b2ac4c2aab6aa779132abbb7e5b566>
+		</items>
+		<data>
+			<item_000>
+				<data_input_field_id>hash_0700187a8b1f8b7e8f55a6b16ade5f353f0ebb</data_input_field_id>
+				<t_value>on</t_value>
+				<value></value>
+			</item_000>
+			<item_001>
+				<data_input_field_id>hash_070018c9fe141e8969989a95f0c15c8a2bb453</data_input_field_id>
+				<t_value>on</t_value>
+				<value></value>
+			</item_001>
+			<item_002>
+				<data_input_field_id>hash_070018e75a4917f123eb65f903bc63210f7c85</data_input_field_id>
+				<t_value>on</t_value>
+				<value></value>
+			</item_002>
+			<item_003>
+				<data_input_field_id>hash_0700181d05fd1d3266b6ee54637363d7a3da3d</data_input_field_id>
+				<t_value>on</t_value>
+				<value></value>
+			</item_003>
+		</data>
+	</hash_01001835d475dff8119734fe58cad1ce0e294f>
 	<hash_0300180b7087e99152e3d0b3b4a8cbfd427ad0>
 		<name>Hadoop - NameNode - FSNamesystemStatus</name>
 		<type_id>1</type_id>
@@ -818,6 +973,130 @@
 			</hash_0700183651a478b8595c5cee80cb13e8f9d6d4>
 		</fields>
 	</hash_0300180b7087e99152e3d0b3b4a8cbfd427ad0>
+	<hash_0300180fdbbbb5a4f4bc2a7baf498505e1f3d9>
+		<name>Hadoop - RpcStatisticsForPort</name>
+		<type_id>1</type_id>
+		<input_string>sh &lt;path_cacti&gt;/scripts/RpcStatisticsForPort.sh &lt;jmx_url&gt; &lt;user&gt; &lt;pass&gt; &lt;objectname&gt;</input_string>
+		<fields>
+			<hash_0700187a8b1f8b7e8f55a6b16ade5f353f0ebb>
+				<name>jmx_url</name>
+				<update_rra></update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code></type_code>
+				<input_output>in</input_output>
+				<data_name>jmx_url</data_name>
+			</hash_0700187a8b1f8b7e8f55a6b16ade5f353f0ebb>
+			<hash_070018c9fe141e8969989a95f0c15c8a2bb453>
+				<name>user</name>
+				<update_rra></update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code></type_code>
+				<input_output>in</input_output>
+				<data_name>user</data_name>
+			</hash_070018c9fe141e8969989a95f0c15c8a2bb453>
+			<hash_070018e75a4917f123eb65f903bc63210f7c85>
+				<name>pass</name>
+				<update_rra></update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code></type_code>
+				<input_output>in</input_output>
+				<data_name>pass</data_name>
+			</hash_070018e75a4917f123eb65f903bc63210f7c85>
+			<hash_0700181d05fd1d3266b6ee54637363d7a3da3d>
+				<name>objectname</name>
+				<update_rra></update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code></type_code>
+				<input_output>in</input_output>
+				<data_name>objectname</data_name>
+			</hash_0700181d05fd1d3266b6ee54637363d7a3da3d>
+			<hash_07001837a6ff66a17d112e3d9afc811da1e1ae>
+				<name>NumOpenConnections</name>
+				<update_rra>on</update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code></type_code>
+				<input_output>out</input_output>
+				<data_name>NumOpenConnections</data_name>
+			</hash_07001837a6ff66a17d112e3d9afc811da1e1ae>
+			<hash_0700181816030433e9e0dae5d318c684982c1a>
+				<name>CallQueueLen</name>
+				<update_rra>on</update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code></type_code>
+				<input_output>out</input_output>
+				<data_name>CallQueueLen</data_name>
+			</hash_0700181816030433e9e0dae5d318c684982c1a>
+			<hash_07001862de778013d523c024c471758ab49a7b>
+				<name>RpcOpsAvgProcessingTime</name>
+				<update_rra>on</update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code></type_code>
+				<input_output>out</input_output>
+				<data_name>RpcOpsAvgProcessingTime</data_name>
+			</hash_07001862de778013d523c024c471758ab49a7b>
+			<hash_070018a8cda36a3b53146f274f8363da0b5518>
+				<name>RpcOpsAvgProcessingTimeMax</name>
+				<update_rra>on</update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code></type_code>
+				<input_output>out</input_output>
+				<data_name>RpcOpsAvgProcessingTimeMax</data_name>
+			</hash_070018a8cda36a3b53146f274f8363da0b5518>
+			<hash_0700185567612c973e108a3d657e9dd6ece366>
+				<name>RpcOpsAvgProcessingTimeMin</name>
+				<update_rra>on</update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code></type_code>
+				<input_output>out</input_output>
+				<data_name>RpcOpsAvgProcessingTimeMin</data_name>
+			</hash_0700185567612c973e108a3d657e9dd6ece366>
+			<hash_0700184f44b7195f33f826318fd377c9c6f518>
+				<name>RpcOpsAvgQueueTime</name>
+				<update_rra>on</update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code></type_code>
+				<input_output>out</input_output>
+				<data_name>RpcOpsAvgQueueTime</data_name>
+			</hash_0700184f44b7195f33f826318fd377c9c6f518>
+			<hash_0700183e42a3b9d9e998b81b29ce1e963eae55>
+				<name>RpcOpsAvgQueueTimeMax</name>
+				<update_rra>on</update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code></type_code>
+				<input_output>out</input_output>
+				<data_name>RpcOpsAvgQueueTimeMax</data_name>
+			</hash_0700183e42a3b9d9e998b81b29ce1e963eae55>
+			<hash_070018a7446b0881ce855c67b59b9f0efd1c74>
+				<name>RpcOpsAvgQueueTimeMin</name>
+				<update_rra>on</update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code></type_code>
+				<input_output>out</input_output>
+				<data_name>RpcOpsAvgQueueTimeMin</data_name>
+			</hash_070018a7446b0881ce855c67b59b9f0efd1c74>
+			<hash_070018f4eff913b482c73b1e5f986a073da162>
+				<name>RpcOpsNumber</name>
+				<update_rra>on</update_rra>
+				<regexp_match></regexp_match>
+				<allow_nulls></allow_nulls>
+				<type_code></type_code>
+				<input_output>out</input_output>
+				<data_name>RpcOpsNumber</data_name>
+			</hash_070018f4eff913b482c73b1e5f986a073da162>
+		</fields>
+	</hash_0300180fdbbbb5a4f4bc2a7baf498505e1f3d9>
 	<hash_150018c21df5178e5c955013591239eb0afd46>
 		<name>Daily (5 Minute Average)</name>
 		<x_files_factor>0.5</x_files_factor>
