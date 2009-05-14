@@ -1,5 +1,5 @@
 NameNode
-   RpcStatisticsForPort-"NumOpenConnections"
+   RpcStatisticsForPort-*Can be used on any hadoop component
 
    NameNodeStatistics-"SafemodeTime"
     This value is set on startup it also should be reset when a NameNode leaves
