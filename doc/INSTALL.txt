@@ -9,6 +9,13 @@ PreReq
 Installation
 
    Hadoop
+     hadoop-metrics.properties
+       
+       dfs.class=org.apache.hadoop.metrics.spi.NullContextWithUpdateThread
+       dfs.period=300
+        
+       jvm.class=org.apache.hadoop.metrics.spi.NullContextWithUpdateThread
+       jvm.period=300	
      Enable JMX on Each Hadoop Node
        cd <hadoop>/conf
         vi jmxremote.access
