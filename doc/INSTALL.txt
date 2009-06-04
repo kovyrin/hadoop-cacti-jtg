@@ -17,7 +17,8 @@ Installation
        jvm.class=org.apache.hadoop.metrics.spi.NullContextWithUpdateThread
        jvm.period=300	
      Enable JMX on Each Hadoop Node
-       cd <hadoop>/conf
+        
+        cd <hadoop>/conf
         vi jmxremote.access
         monitorRole   readonly
         controlRole   readwrite
@@ -72,7 +73,8 @@ Usage
   2 Hadoop DataNode
 
   Each graph takes three or four parameters. These would be the same
-  values specified in the testing section above.
+  values specified in the testing section above. Some graphs require 
+  the controlRole. I use controlRole for all graphs.
 
   1 JMXURL
   2 user
