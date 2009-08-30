@@ -162,10 +162,14 @@ public class JMXBase {
 
   public void setup(String [] args){
 
-    setJmxURL(System.getProperty("jmxURL") );
-    setUser(System.getProperty("jmxUser") );
-    setPass(System.getProperty("jmxPass") );
-    setObjectName(System.getProperty("jmxObject"));
+    if (System.getProperty("jmxURL")!= null)
+      setJmxURL( System.getProperty("jmxURL") );
+    if (System.getProperty("jmxUser")!= null)
+      setUser(System.getProperty("jmxUser") );
+    if (System.getProperty("jmxPass")!= null)
+      setPass(System.getProperty("jmxPass") );
+    if (System.getProperty("jmxObject")!= null)
+      setObjectName(System.getProperty("jmxObject"));
 
     if (args.length >= 3) {
       setJmxURL(args[0]);
