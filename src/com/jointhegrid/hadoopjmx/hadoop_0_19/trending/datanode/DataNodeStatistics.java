@@ -61,7 +61,7 @@ public class DataNodeStatistics extends JMXBase {
     //we need this because datanode on's have a ID like
     //hadoop:service=DataNode,name=DataNodeActivity-DS-1485738281-127.0.0.1-50010-1250648745469
     if (this.objectName.equalsIgnoreCase("AUTO")) {
-      String dnbase = "hadoop.dfs:name=DataNodeStatistics,service=DataNode-DS";
+      String dnbase = "name=DataNodeStatistics";
       Set<ObjectName> names = null;
       try {
         names = connection.queryNames(null, null);
