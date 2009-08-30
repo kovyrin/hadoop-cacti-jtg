@@ -25,8 +25,8 @@ import javax.management.IntrospectionException;
 import javax.management.MBeanAttributeInfo;
 import javax.management.MBeanInfo;
 import javax.management.MBeanServerConnection;
-import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
+import javax.management.QueryExp;
 import javax.management.ReflectionException;
 import javax.management.openmbean.CompositeDataSupport;
 import javax.management.remote.JMXConnector;
@@ -44,9 +44,14 @@ public class JWalker {
 
   public static void main(String[] args) {
     JWalker j = new JWalker();
-    j.url = args[0];
-    j.user = args[1];
-    j.pass = args[2];
+    String [] testargs = new String [] {
+      "service:jmx:rmi:///jndi/rmi://localhost:10001/jmxrmi" ,
+      "controlRole",
+      "password",
+       };
+    j.url = testargs[0];
+    j.user = testargs[1];
+    j.pass = testargs[2];
     j.walk();
   }
 
@@ -70,8 +75,10 @@ public class JWalker {
       System.out.println("JMX Domains");
       for (String domain : connection.getDomains()) {
         System.out.println("domain " + domain);
+      }
 
         Set<ObjectName> names = connection.queryNames(null, null);
+
         for (ObjectName on : names) {
           System.out.println("object name " + on.getCanonicalName());
           MBeanInfo info = connection.getMBeanInfo(on);
@@ -101,7 +108,7 @@ public class JWalker {
             }
           }
 
-        }
+        
 
 
       }

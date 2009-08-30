@@ -14,7 +14,12 @@
 * limitations under the License.
  */
 
-package com.jointhegrid.hadoopjmx;
+package com.jointhegrid.hadoopjmx.hadoop_0_19.trending.datanode;
+
+import com.jointhegrid.hadoopjmx.*;
+import java.io.IOException;
+import java.util.Set;
+import javax.management.ObjectName;
 
 /**
  *
@@ -42,18 +47,31 @@ public class DataNodeStatistics extends JMXBase {
     };
   }
 
-  public static void main(String [] args){
+  public static void main(String [] args) throws JMXBaseException{
     DataNodeStatistics dns = new DataNodeStatistics();
-    if (args.length != 4) {
-      System.err.println("Wrong number of arguments. ");
-      return;
-    } else {
-      dns.setJmxURL(args[0]);
-      dns.setUser(args[1]);
-      dns.setPass(args[2]);
-      dns.setObjectName(args[3]);
-    }
+    dns.setup(args);
+    dns.fetch();
     dns.output();
   }
-  
+
+  public void fetch() throws JMXBaseException{
+    if (connection == null){
+      makeConnection();
+    }
+    //we need this because datanode on's have a ID like
+    //hadoop:service=DataNode,name=DataNodeActivity-DS-1485738281-127.0.0.1-50010-1250648745469
+    if (this.objectName.equalsIgnoreCase("AUTO")) {
+      String dnbase = "hadoop:service=DataNode,name=DataNode-DS";
+      Set<ObjectName> names = null;
+      try {
+        names = connection.queryNames(null, null);
+      } catch (IOException ex){ throw new JMXBaseException(ex); }
+      for (ObjectName on:names ){
+        if (on.toString().indexOf(dnbase)> -1 ){
+          this.setObjectName(on.toString());
+        }
+      }
+    }
+    super.fetch();
+  }
 }

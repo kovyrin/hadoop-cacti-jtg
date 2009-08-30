@@ -13,7 +13,10 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
  */
-package com.jointhegrid.hadoopjmx;
+package com.jointhegrid.hadoopjmx.hadoop_0_19.trending.rpc;
+
+import com.jointhegrid.hadoopjmx.*;
+
 /**
  *
  * @author ecapriolo
@@ -35,19 +38,10 @@ public class RpcStatisticsForPort  extends JMXBase {
     wantedOperations = new String[]{};
   }
 
-  public static void main (String [] args){
-
+  public static void main (String [] args) throws JMXBaseException{
     RpcStatisticsForPort nnc = new RpcStatisticsForPort();
-    if (args.length!=4){
-      System.err.println("Wrong number of arguments. ");
-      return;
-      // nnc.setObjectName("name=RpcStatisticsForPort54310,service=NameNode");
-    } else {
-      nnc.setJmxURL(args[0]);
-      nnc.setUser(args[1]);
-      nnc.setPass(args[2]);
-      nnc.setObjectName(args[3]);
-    }
+    nnc.setup(args);
+    nnc.fetch();
     nnc.output();
   }
 }

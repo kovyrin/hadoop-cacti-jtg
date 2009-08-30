@@ -2,6 +2,7 @@ PreReq
 
 	Hadoop System
 		Hadoop (Tested with 0.19.1)
+    Hadoop (Tested with 0.20.0)
 
 	Cacti System
 		Cacti (Tested with 0.8.7d)
@@ -9,16 +10,8 @@ PreReq
 Installation
 
    Hadoop
-     hadoop-metrics.properties
-       
-       dfs.class=org.apache.hadoop.metrics.spi.NullContextWithUpdateThread
-       dfs.period=300
-        
-       jvm.class=org.apache.hadoop.metrics.spi.NullContextWithUpdateThread
-       jvm.period=300	
      Enable JMX on Each Hadoop Node
-        
-        cd <hadoop>/conf
+       cd <hadoop>/conf
         vi jmxremote.access
         monitorRole   readonly
         controlRole   readwrite
@@ -29,7 +22,7 @@ Installation
 
         chmod 600 jmxremote.password
 
-        vi hadoop.env
+        vi hadoop-env.sh
         ...
         export HADOOP_JMX_BASE="-Dcom.sun.management.jmxremote.ssl=false"
         export HADOOP_JMX_BASE="$HADOOP_JMX_BASE -Dcom.sun.management.jmxremote.password.file=/opt/hadoop-0.19.1/conf/jmxremote.password"
@@ -50,16 +43,19 @@ Installation
     cd hadoop-cacti-jtg
     ant jar
     cp dist/hadoop-cacti-jtg.jar <cacti_home>/scripts/
-    cp scripts/*.sh hadoop-cacti-jtg
+    cp -r scripts/*.sh <cacti_home>/scripts/
 
      Using your cacti web interface, go to the 'Import Template' section
-	   Import hadoop_namenode.xml. It was exported with deps.
-     Import hadoop_datanode.xml. It was exported with deps.
+	   Import 0_19/hadoop_namenode.xml. It was exported with deps.
+     Import 0_19/hadoop_datanode.xml. It was exported with deps.
+     Import 0_20/hadoop_namenode.xml. It was exported with deps.
+     Import 0_20/hadoop_namenode.xml. It was exported with deps.
 
 Testing
 
+   *Replace 0_19 with 0_20 based on your hadoop version
    cd <cacti_home>/scripts/
-   sh FSNamesystemStatus.sh \
+   sh 0_19/FSNamesystemStatus.sh \
      service:jmx:rmi:///jndi/rmi://10.0.1.2:10001/jmxrmi \
      controlRole <yourpassword>
 
@@ -69,12 +65,16 @@ Testing
 Usage
 
   Host Templates should exist in cacti
-  1 Hadoop NameNode
-  2 Hadoop DataNode
+  1 Hadoop NameNode 0_19
+  2 Hadoop DataNode 0_19
+  3 Hadoop NameNode 0_20
+  4 Hadoop DataNode 0_20
+
+  hadooop 20 now supports the RPC object on NameNode,SecondaryNameNode,
+  JobTracker and Datanode
 
   Each graph takes three or four parameters. These would be the same
-  values specified in the testing section above. Some graphs require 
-  the controlRole. I use controlRole for all graphs.
+  values specified in the testing section above.
 
   1 JMXURL
   2 user

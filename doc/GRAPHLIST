@@ -1,7 +1,23 @@
-NameNode
-   RpcStatisticsForPort-*Can be used on any hadoop component
+RpcStatisticsForPort
+	Hadoop components comminicate with an Rpc mechanism. Each hadoop component
+  supports the RpcStatisticsForPort object.
 
-   NameNodeStatistics-"SafemodeTime"
-    This value is set on startup it also should be reset when a NameNode leaves
-    safe mode.
-   NameNodeStatistics-"FSImageLoadTime"
+	NumOpenConnections: (GAUGE) (SAMPLED): Good general indicator of cluster
+  activitiy. Several connections will always be open. This number will increase
+  as the cluster usage increases.
+
+NameNodeStatistics
+
+	(
+	"NumFilesCreated": (GAUGE) (SAMPLED) :
+	"NumFilesListed": (GAUGE) (SAMPLED) :
+	"NumGetBlockLocations": (GAUGE) (SAMPLED) :
+	"NumFilesRenamed": (GAUGE) (SAMPLED) :
+	) : These values will help determine usage patterns in your cluster. NumFilesCreated would indicate the number of files added to the
+	cluster per day.
+
+	(
+	"SafemodeTime": (GAUGE) (PERSISTANT)
+	"FSImageLoadTime": (GAUGE) (PERSISTANT)
+	) : These values only change when the cluster enters or leaves start mode or starts up. Graphing them is slightly "overkill" but they
+	can become interesting if your cluster takes a long time to start up.

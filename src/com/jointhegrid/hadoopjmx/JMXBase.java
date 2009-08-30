@@ -13,71 +13,213 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
  */
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 package com.jointhegrid.hadoopjmx;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
+import javax.management.AttributeNotFoundException;
+import javax.management.InstanceNotFoundException;
+import javax.management.IntrospectionException;
+import javax.management.MBeanException;
 import javax.management.MBeanInfo;
 import javax.management.MBeanServerConnection;
+import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
+import javax.management.ReflectionException;
 import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXServiceURL;
 
+
 /**
- *
+ * No one class will every be capable of connecting to a JMX Server extracting
+ * and presenting all relevent JMX information in a format usable for all
+ * NMS systems. JMXBase provides a simple model to specify the information a user
+ * is interested in, fetch it, store it and output it. Cacti and Nagios easily
+ * integrate with JMX Base.
  * @author ecapriolo
  */
-public abstract class JMXBase {
+public class JMXBase {
+  /** The URL of the JMXServer to aquire data from*/
   protected String jmxURL;
+  /** The jmx user credential (you need rw to call operations)*/
   protected String user;
   protected String pass;
   protected String objectName;
-  protected String [] wantedVariables = null;
-  protected String [] wantedOperations = null;
-  
+  protected String [] wantedVariables;
+  protected String [] wantedOperations;
+  protected JMXOutput output = null;
+  protected Map<String,Object> wantedVarResults = null;
+  protected Map<String,Object> wantedOperResults = null;
+
+  protected JMXConnector connector;
+  protected MBeanServerConnection connection;
+  protected JMXServiceURL jmxUrl;
+
   public JMXBase(){
+    output=new JMXOutput();
+    wantedOperations = new String []{};
+    wantedVariables = new String []{};
+    wantedVarResults = new HashMap<String,Object>();
+    wantedOperResults = new HashMap<String,Object>();
+  }
+
+  public JMXBase(MBeanServerConnection conn){
+    this();
+    connection=conn;
+  }
+
+  public void fetch() throws JMXBaseException {
+    if (connection == null){
+      makeConnection();
+    }
+    //if we have data we are re-fetching it
+    this.wantedVarResults.clear();
+    this.wantedOperResults.clear();
+
+    for (String var:this.wantedVariables){
+      Object theResult= getObjectAttribute(this.objectName,var);
+      this.wantedVarResults.put(var, theResult);
+    }
+
+    for (String op : wantedOperations) {
+      Object theResult = invokeOperation(this.objectName,op);
+      this.wantedOperResults.put(op,theResult);
+    }
+
+  }
+
+  public void output() throws JMXBaseException {
+    
+    for (String var:this.wantedVariables){
+      System.out.print( 
+              output.output(var, this.getWantedVarResultsRO().get(var) ) );
+    }
+
+    for (String op : wantedOperations) {
+      System.out.println(
+              output.output(op, this.getWantedOperResultsRO().get(op) ) );
+    }
+
+  }
+
+  public Object invokeOperation( String objectName, String operation)
+          throws JMXBaseException{
+    Object result = null;
+    try {
+      ObjectName on = new ObjectName(objectName);
+      result = connection.invoke(on, operation, new Object[]{}, new String[]{});
+
+    } catch (InstanceNotFoundException ex){
+      throw new JMXBaseException(ex);
+    } catch (MalformedObjectNameException ex){
+      throw new JMXBaseException(ex);
+    } catch (MBeanException ex){
+      throw new JMXBaseException(ex);
+    }  catch (ReflectionException ex){
+      throw new JMXBaseException(ex);
+    } catch (IOException ex){
+      throw new JMXBaseException(ex);
+    }
+    return result;
+  }
+  public Object getObjectAttribute(String objectName, String attribute)
+          throws JMXBaseException {
+    Object result=null;
+    try {
+      ObjectName on = new ObjectName(objectName);
+      MBeanInfo info = connection.getMBeanInfo(on);
+      Object attr2 = connection.getAttribute(on, attribute);
+      if (attr2==null){
+        throw new JMXBaseException(attribute+" not found in "+objectName);
+      } else {
+        result = attr2;
+      }
+    } catch (InstanceNotFoundException ex){
+      throw new JMXBaseException(ex);
+    } catch (MalformedObjectNameException ex){
+      throw new JMXBaseException(ex);
+    } catch (IntrospectionException ex){
+      throw new JMXBaseException(ex);
+    } catch (MBeanException ex){
+      throw new JMXBaseException(ex);
+    } catch (AttributeNotFoundException ex){
+      throw new JMXBaseException(ex);
+    } catch (ReflectionException ex){
+      throw new JMXBaseException(ex);
+    } catch (IOException ex){
+      throw new JMXBaseException(ex);
+    }
+    return result;
+  }
+
+  public void setup(String [] args){
+
+    setJmxURL(System.getProperty("jmxURL") );
+    setUser(System.getProperty("jmxUser") );
+    setPass(System.getProperty("jmxPass") );
+    setObjectName(System.getProperty("jmxObject"));
+
+    if (args.length == 4) {
+      setJmxURL(args[0]);
+      setUser(args[1]);
+      setPass(args[2]);
+      setObjectName(args[3]);
+    }
     
   }
   
-  public void output(){
-      try {
-      //connect
-      JMXServiceURL jmxUrl = new JMXServiceURL(this.jmxURL);
+  public void makeConnection() throws JMXBaseException {
+    try {
+      jmxUrl = new JMXServiceURL(this.jmxURL);
       Map m = new HashMap();
       m.put(JMXConnector.CREDENTIALS, new String[]{this.user, this.pass});
-      JMXConnector connector = JMXConnectorFactory.connect(jmxUrl, m);
-      MBeanServerConnection connection = connector.getMBeanServerConnection();
-
-      //locate object
-      ObjectName on = new ObjectName(this.objectName);
-      MBeanInfo info = connection.getMBeanInfo(on);
-
-      for (String var : this.wantedVariables) {
-        Object attr2 = connection.getAttribute(on, var);
-        System.out.print(var + ":" + (attr2.toString()) + " ");
-      }
-
-      // operations
-      for (String op : wantedOperations) {
-        Object result = connection.invoke(on, op, new Object[]{}, new String[]{});
-        System.out.print(op + ":" + result + " ");
-      }
-
-      //close
-      connector.close();
-    } catch (Exception ex) {
-      System.err.println(ex);
+      connector = JMXConnectorFactory.connect(jmxUrl, m);
+      connection = connector.getMBeanServerConnection();
+    } catch (MalformedURLException ex){
+      throw new JMXBaseException (ex);
+    } catch (IOException  ex){
+      throw new JMXBaseException (ex);
     }
   }
 
-  public String getJmxURL() {
-    return jmxURL;
+  public void closeConnection() throws JMXBaseException{
+    try {
+      connector.close();
+    } catch (IOException ex){
+      throw new JMXBaseException (ex);
+    }
   }
 
-  public void setJmxURL(String jmxURL) {
-    this.jmxURL = jmxURL;
+  public Map<String,Object> getWantedVarResultsRO(){
+    return java.util.Collections.unmodifiableMap(wantedVarResults);
+  }
+
+  public Map<String,Object> getWantedOperResultsRO(){
+    return java.util.Collections.unmodifiableMap(wantedOperResults);
+  }
+
+  public MBeanServerConnection getConnection() {
+    return connection;
+  }
+
+  public void setConnection(MBeanServerConnection connection) {
+    this.connection = connection;
+  }
+
+  public String getObjectName() {
+    return objectName;
+  }
+
+  public void setObjectName(String objectName) {
+    this.objectName = objectName;
   }
 
   public String getPass() {
@@ -96,12 +238,15 @@ public abstract class JMXBase {
     this.user = user;
   }
 
-  public String getObjectName() {
-    return objectName;
+  public String getJmxURL() {
+    return jmxURL;
   }
 
-  public void setObjectName(String objectName) {
-    this.objectName = objectName;
+  public void setJmxURL(String jmxURL) {
+    this.jmxURL = jmxURL;
   }
 
+  class Output  {
+   
+  }
 }
