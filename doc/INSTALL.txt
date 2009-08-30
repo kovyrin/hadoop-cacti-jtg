@@ -1,0 +1,101 @@
+PreReq
+
+	Hadoop System
+		Hadoop (Tested with 0.19.1)
+
+	Cacti System
+		Cacti (Tested with 0.8.7d)
+
+Installation
+
+   Hadoop
+     hadoop-metrics.properties
+       
+       dfs.class=org.apache.hadoop.metrics.spi.NullContextWithUpdateThread
+       dfs.period=300
+        
+       jvm.class=org.apache.hadoop.metrics.spi.NullContextWithUpdateThread
+       jvm.period=300	
+     Enable JMX on Each Hadoop Node
+        
+        cd <hadoop>/conf
+        vi jmxremote.access
+        monitorRole   readonly
+        controlRole   readwrite
+
+        vi jmxremote.password
+        monitorRole     passwd
+        controlRole     password
+
+        chmod 600 jmxremote.password
+
+        vi hadoop.env
+        ...
+        export HADOOP_JMX_BASE="-Dcom.sun.management.jmxremote.ssl=false"
+        export HADOOP_JMX_BASE="$HADOOP_JMX_BASE -Dcom.sun.management.jmxremote.password.file=/opt/hadoop-0.19.1/conf/jmxremote.password"
+        export HADOOP_JMX_BASE="$HADOOP_JMX_BASE -Dcom.sun.management.jmxremote.access.file=/opt/hadoop-0.19.1/conf/jmxremote.access"
+
+        # Command specific options appended to HADOOP_OPTS when specified
+        export HADOOP_NAMENODE_OPTS="$HADOOP_JMX_BASE -Dcom.sun.management.jmxremote.port=10001"
+        export HADOOP_SECONDARYNAMENODE_OPTS="$HADOOP_JMX_BASE -Dcom.sun.management.jmxremote.port=10002"
+        export HADOOP_DATANODE_OPTS="$HADOOP_JMX_BASE -Dcom.sun.management.jmxremote.port=10003"
+        export HADOOP_BALANCER_OPTS="$HADOOP_JMX_BASE -Dcom.sun.management.jmxremote.port=10004"
+        export HADOOP_JOBTRACKER_OPTS="$HADOOP_JMX_BASE -Dcom.sun.management.jmxremote.port=10005"
+        ...
+
+        Restart Hadoop
+   Cacti
+    cd /tmp
+    svn co http://www.jointhegrid.com/svn/hadoop-cacti-jtg/trunk/
+    cd hadoop-cacti-jtg
+    ant jar
+    cp dist/hadoop-cacti-jtg.jar <cacti_home>/scripts/
+    cp scripts/*.sh hadoop-cacti-jtg
+
+     Using your cacti web interface, go to the 'Import Template' section
+	   Import hadoop_namenode.xml. It was exported with deps.
+     Import hadoop_datanode.xml. It was exported with deps.
+
+Testing
+
+   cd <cacti_home>/scripts/
+   sh FSNamesystemStatus.sh \
+     service:jmx:rmi:///jndi/rmi://10.0.1.2:10001/jmxrmi \
+     controlRole <yourpassword>
+
+   Expected Result:
+    CapacityTotal:2113748992 CapacityUsed:40960 CapacityRemaining:812830720 BlocksTotal:1 FilesTotal:9 numDeadDataNodes:0 numLiveDataNodes:1
+
+Usage
+
+  Host Templates should exist in cacti
+  1 Hadoop NameNode
+  2 Hadoop DataNode
+
+  Each graph takes three or four parameters. These would be the same
+  values specified in the testing section above. Some graphs require 
+  the controlRole. I use controlRole for all graphs.
+
+  1 JMXURL
+  2 user
+  3 pass
+  4 JMXObjectName (not always required)
+
+Using JWalker
+
+  JWalker is a command line JMX walk tool. You can use it like you would use jconsole
+  to dump the properties of JMX. In particular your need this to determing the
+  name of DataNode objects.
+
+  sh JWalker.sh service:jmx:rmi:///jndi/rmi://10.0.1.2:10001/jmxrmi \
+  controlRole <password>
+
+Support
+
+	http://www.jointhegrid.com
+	Edward Capriolo
+  edlinuxguru@gmail.com
+
+Contribute
+
+	Please do! Bugs, questions, comments, praise, condemnation Let me know!
