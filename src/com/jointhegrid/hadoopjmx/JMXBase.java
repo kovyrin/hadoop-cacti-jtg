@@ -167,10 +167,12 @@ public class JMXBase {
     setPass(System.getProperty("jmxPass") );
     setObjectName(System.getProperty("jmxObject"));
 
-    if (args.length == 4) {
+    if (args.length >= 3) {
       setJmxURL(args[0]);
       setUser(args[1]);
       setPass(args[2]);
+    }
+    if (args.length >=4){
       setObjectName(args[3]);
     }
     
