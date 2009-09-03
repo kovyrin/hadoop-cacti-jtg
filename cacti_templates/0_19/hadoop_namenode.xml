@@ -2864,7 +2864,7 @@
 	<hash_0300188bdfa78653826bd0ba595a68baea6c49>
 		<name>Hadoop 19 - NameNode - NameNodeStatistics</name>
 		<type_id>1</type_id>
-		<input_string>sh &lt;path_cacti&gt;/scripts/NameNodeStatistics.sh &lt;jmx_url&gt; &lt;user&gt; &lt;pass&gt;</input_string>
+		<input_string>sh &lt;path_cacti&gt;/scripts/0_19/namenode/NameNodeStatistics.sh &lt;jmx_url&gt; &lt;user&gt; &lt;pass&gt;</input_string>
 		<fields>
 			<hash_0700188c113e046dc045481b0b5f3a18b4b296>
 				<name>jmx_url</name>
