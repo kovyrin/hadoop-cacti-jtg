@@ -1,7 +1,7 @@
 <cacti>
 	<hash_020018125d559dc6bd1363c4f4915b78744cd3>
 		<name>hadoop 20 NameNode</name>
-		<graph_templates>hash_000018638b68a452a2b06c48d6d7f83cadfed2|hash_000018b9bf9bf1f89b5e9530db5db6fc68f32c|hash_0000189d72c20b7e4bf4aca5a9e1cb701d92cf</graph_templates>
+		<graph_templates>hash_000018638b68a452a2b06c48d6d7f83cadfed2|hash_000018b9bf9bf1f89b5e9530db5db6fc68f32c|hash_0000189d72c20b7e4bf4aca5a9e1cb701d92cf|hash_0000185656992b2f4c5fa1012ddb7408965da8</graph_templates>
 		<data_queries></data_queries>
 	</hash_020018125d559dc6bd1363c4f4915b78744cd3>
 	<hash_000018638b68a452a2b06c48d6d7f83cadfed2>
@@ -603,6 +603,167 @@
 			</hash_0900183b77ff16f980b90f1c351854efb28813>
 		</inputs>
 	</hash_0000189d72c20b7e4bf4aca5a9e1cb701d92cf>
+	<hash_0000185656992b2f4c5fa1012ddb7408965da8>
+		<name>Hadoop 20 - NameNode - Live vs Dead Datanodes</name>
+		<graph>
+			<t_title></t_title>
+			<title>|host_description| Hadoop 20- NameNode - Live vs Dead Datanodes</title>
+			<t_image_format_id></t_image_format_id>
+			<image_format_id>1</image_format_id>
+			<t_height></t_height>
+			<height>120</height>
+			<t_width></t_width>
+			<width>500</width>
+			<t_slope_mode></t_slope_mode>
+			<slope_mode>on</slope_mode>
+			<t_auto_scale></t_auto_scale>
+			<auto_scale>on</auto_scale>
+			<t_auto_scale_opts></t_auto_scale_opts>
+			<auto_scale_opts>2</auto_scale_opts>
+			<t_auto_scale_log></t_auto_scale_log>
+			<auto_scale_log></auto_scale_log>
+			<t_scale_log_units></t_scale_log_units>
+			<scale_log_units></scale_log_units>
+			<t_auto_scale_rigid></t_auto_scale_rigid>
+			<auto_scale_rigid></auto_scale_rigid>
+			<t_auto_padding></t_auto_padding>
+			<auto_padding>on</auto_padding>
+			<t_export></t_export>
+			<export>on</export>
+			<t_upper_limit></t_upper_limit>
+			<upper_limit>100</upper_limit>
+			<t_lower_limit></t_lower_limit>
+			<lower_limit>0</lower_limit>
+			<t_base_value></t_base_value>
+			<base_value>1000</base_value>
+			<t_unit_value></t_unit_value>
+			<unit_value></unit_value>
+			<t_unit_exponent_value></t_unit_exponent_value>
+			<unit_exponent_value></unit_exponent_value>
+			<t_vertical_label></t_vertical_label>
+			<vertical_label></vertical_label>
+		</graph>
+		<items>
+			<hash_100018a5b6fcddc2e22289a629d39e85753b3c>
+				<task_item_id>hash_08001838cd9dde3c5c1e28cd7fc1020032a927</task_item_id>
+				<color_id>4444FF</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>7</graph_type_id>
+				<consolidation_function_id>1</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060018e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>numLiveDataNodes</text_format>
+				<hard_return></hard_return>
+				<sequence>1</sequence>
+			</hash_100018a5b6fcddc2e22289a629d39e85753b3c>
+			<hash_1000189a0c06ff2b30fc054f4a799960f0e4cc>
+				<task_item_id>hash_08001838cd9dde3c5c1e28cd7fc1020032a927</task_item_id>
+				<color_id>0</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>4</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060018e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>Current:</text_format>
+				<hard_return></hard_return>
+				<sequence>2</sequence>
+			</hash_1000189a0c06ff2b30fc054f4a799960f0e4cc>
+			<hash_1000185a19e20a7aeceb6e7c4bb84d346e4649>
+				<task_item_id>hash_08001838cd9dde3c5c1e28cd7fc1020032a927</task_item_id>
+				<color_id>0</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>1</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060018e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>Average:</text_format>
+				<hard_return></hard_return>
+				<sequence>3</sequence>
+			</hash_1000185a19e20a7aeceb6e7c4bb84d346e4649>
+			<hash_1000188c66da546573a85850ee02bfe8c2d100>
+				<task_item_id>hash_08001838cd9dde3c5c1e28cd7fc1020032a927</task_item_id>
+				<color_id>0</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>3</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060018e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>Maximum:</text_format>
+				<hard_return>on</hard_return>
+				<sequence>4</sequence>
+			</hash_1000188c66da546573a85850ee02bfe8c2d100>
+			<hash_100018ea292a2bbb3f2073fb58fd5f59fd8a0c>
+				<task_item_id>hash_0800189195992be2d607002f89b0843ff6eef2</task_item_id>
+				<color_id>FF0000</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>8</graph_type_id>
+				<consolidation_function_id>1</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060018e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>numDeadDataNodes</text_format>
+				<hard_return></hard_return>
+				<sequence>5</sequence>
+			</hash_100018ea292a2bbb3f2073fb58fd5f59fd8a0c>
+			<hash_100018466eca85b1c671a54d3c2d877bf002ea>
+				<task_item_id>hash_0800189195992be2d607002f89b0843ff6eef2</task_item_id>
+				<color_id>0</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>4</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060018e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>Current:</text_format>
+				<hard_return></hard_return>
+				<sequence>6</sequence>
+			</hash_100018466eca85b1c671a54d3c2d877bf002ea>
+			<hash_100018674a32dee6be9c489d81947b0285b185>
+				<task_item_id>hash_0800189195992be2d607002f89b0843ff6eef2</task_item_id>
+				<color_id>0</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>1</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060018e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>Average:</text_format>
+				<hard_return></hard_return>
+				<sequence>7</sequence>
+			</hash_100018674a32dee6be9c489d81947b0285b185>
+			<hash_100018727bc532cc90319a6d6e8526d4960ef6>
+				<task_item_id>hash_0800189195992be2d607002f89b0843ff6eef2</task_item_id>
+				<color_id>0</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>3</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060018e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>Maximum:</text_format>
+				<hard_return>on</hard_return>
+				<sequence>8</sequence>
+			</hash_100018727bc532cc90319a6d6e8526d4960ef6>
+		</items>
+		<inputs>
+			<hash_0900181f72fbf277be34ea4e0a97375a192aef>
+				<name>Data Source [numLiveDataNodes]</name>
+				<description></description>
+				<column_name>task_item_id</column_name>
+				<items>hash_000018a5b6fcddc2e22289a629d39e85753b3c|hash_0000189a0c06ff2b30fc054f4a799960f0e4cc|hash_0000185a19e20a7aeceb6e7c4bb84d346e4649|hash_0000188c66da546573a85850ee02bfe8c2d100</items>
+			</hash_0900181f72fbf277be34ea4e0a97375a192aef>
+			<hash_0900189679a64d6121d2067f11198a24b59b86>
+				<name>Data Source [numDeadDataNodes]</name>
+				<description></description>
+				<column_name>task_item_id</column_name>
+				<items>hash_000018ea292a2bbb3f2073fb58fd5f59fd8a0c|hash_000018466eca85b1c671a54d3c2d877bf002ea|hash_000018674a32dee6be9c489d81947b0285b185|hash_000018727bc532cc90319a6d6e8526d4960ef6</items>
+			</hash_0900189679a64d6121d2067f11198a24b59b86>
+		</inputs>
+	</hash_0000185656992b2f4c5fa1012ddb7408965da8>
 	<hash_0100185a6e134ea25be0f5047fb1d98a0f97d1>
 		<name>Hadoop 20- NameNode - FSNamesystemState - Repl Blocks</name>
 		<ds>
@@ -829,6 +990,72 @@
 			</item_003>
 		</data>
 	</hash_01001898d9935e2d8727a24f68f11f023c51d9>
+	<hash_010018f43e0b52581f113d22c5844bdeb412d2>
+		<name>Hadoop 20- NameNode - FSNamesystemState - Live Dead DataNodes</name>
+		<ds>
+			<t_name></t_name>
+			<name>|host_description| - Hadoop 20- NameNode - FSNamesystemState - Live Dead DataNodes</name>
+			<data_input_id>hash_03001866b3dcef05d75c121a75363029864b4c</data_input_id>
+			<t_rra_id></t_rra_id>
+			<t_rrd_step></t_rrd_step>
+			<rrd_step>300</rrd_step>
+			<t_active></t_active>
+			<active>on</active>
+			<rra_items>hash_150018c21df5178e5c955013591239eb0afd46|hash_1500180d9c0af8b8acdc7807943937b3208e29|hash_1500186fc2d038fb42950138b0ce3e9874cc60|hash_150018e36f3adb9f152adfa5dc50fd2b23337e</rra_items>
+		</ds>
+		<items>
+			<hash_08001838cd9dde3c5c1e28cd7fc1020032a927>
+				<t_data_source_name></t_data_source_name>
+				<data_source_name>numLiveDataNodes</data_source_name>
+				<t_rrd_minimum></t_rrd_minimum>
+				<rrd_minimum>0</rrd_minimum>
+				<t_rrd_maximum></t_rrd_maximum>
+				<rrd_maximum>0</rrd_maximum>
+				<t_data_source_type_id></t_data_source_type_id>
+				<data_source_type_id>1</data_source_type_id>
+				<t_rrd_heartbeat></t_rrd_heartbeat>
+				<rrd_heartbeat>600</rrd_heartbeat>
+				<t_data_input_field_id></t_data_input_field_id>
+				<data_input_field_id>hash_070018e44541fd936f804cc1e9e13f5fc36426</data_input_field_id>
+			</hash_08001838cd9dde3c5c1e28cd7fc1020032a927>
+			<hash_0800189195992be2d607002f89b0843ff6eef2>
+				<t_data_source_name></t_data_source_name>
+				<data_source_name>numDeadDataNodes</data_source_name>
+				<t_rrd_minimum></t_rrd_minimum>
+				<rrd_minimum>0</rrd_minimum>
+				<t_rrd_maximum></t_rrd_maximum>
+				<rrd_maximum>0</rrd_maximum>
+				<t_data_source_type_id></t_data_source_type_id>
+				<data_source_type_id>1</data_source_type_id>
+				<t_rrd_heartbeat></t_rrd_heartbeat>
+				<rrd_heartbeat>600</rrd_heartbeat>
+				<t_data_input_field_id></t_data_input_field_id>
+				<data_input_field_id>hash_070018cb8b26e7ff30790bcc847c2af07abe24</data_input_field_id>
+			</hash_0800189195992be2d607002f89b0843ff6eef2>
+		</items>
+		<data>
+			<item_000>
+				<data_input_field_id>hash_0700187a2fdfdc4e7513e4d66779ff35e03119</data_input_field_id>
+				<t_value>on</t_value>
+				<value>hadoop:service=NameNode,name=FSNamesystemState</value>
+			</item_000>
+			<item_001>
+				<data_input_field_id>hash_07001878ad7d12ace683364046a62090bd5e6e</data_input_field_id>
+				<t_value>on</t_value>
+				<value></value>
+			</item_001>
+			<item_002>
+				<data_input_field_id>hash_0700188984d8ec91d2813b231325062de623d6</data_input_field_id>
+				<t_value>on</t_value>
+				<value></value>
+			</item_002>
+			<item_003>
+				<data_input_field_id>hash_070018b06d257adb7b80fc81fbb5add224bf38</data_input_field_id>
+				<t_value>on</t_value>
+				<value></value>
+			</item_003>
+		</data>
+	</hash_010018f43e0b52581f113d22c5844bdeb412d2>
 	<hash_03001866b3dcef05d75c121a75363029864b4c>
 		<name>Hadoop 20 - NameNode - FSNamesytemState</name>
 		<type_id>1</type_id>
