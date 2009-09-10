@@ -1059,7 +1059,7 @@
 	<hash_03001866b3dcef05d75c121a75363029864b4c>
 		<name>Hadoop 20 - NameNode - FSNamesytemState</name>
 		<type_id>1</type_id>
-		<input_string>sh &lt;path_cacti&gt;/scripts/0_19/namenode/FSNamesystemState.sh &lt;jmx_url&gt; &lt;user&gt; &lt;pass&gt; &lt;object&gt;</input_string>
+		<input_string>sh &lt;path_cacti&gt;/scripts/0_20/namenode/FSNamesystemState.sh &lt;jmx_url&gt; &lt;user&gt; &lt;pass&gt; &lt;object&gt;</input_string>
 		<fields>
 			<hash_070018b06d257adb7b80fc81fbb5add224bf38>
 				<name>jmx_url</name>
