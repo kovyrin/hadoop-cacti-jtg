@@ -1,0 +1,27 @@
+define host {
+  host_name                       HOSTNAMESHORT
+  alias                           HOSTNAMELONG
+  address                         HOSTIP
+  use                             generic-host
+}
+
+define service {
+  service_description             SSH
+  use                             generic-service
+  host_name                       HOSTNAMESHORT
+  check_command                   check_ssh
+}
+
+define service {
+  service_description             check_remote_datanode
+  use                             generic-service
+  host_name                       HOSTNAMESHORT
+  check_command                   check_remote_datanode!50075
+}
+
+define service {
+  service_description             check_remote_tasktracker
+  use                             generic-service
+  host_name                       HOSTNAMESHORT
+  check_command                   check_remote_tasktracker!50060!50070
+}
