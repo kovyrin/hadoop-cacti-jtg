@@ -49,9 +49,9 @@ public class JWalker {
       "controlRole",
       "password",
        };
-    j.url = testargs[0];
-    j.user = testargs[1];
-    j.pass = testargs[2];
+    j.url = args[0];
+    j.user = args[1];
+    j.pass = args[2];
     j.walk();
   }
 
