@@ -6,12 +6,12 @@ HADOOP_CORE="/path/to/hadoop-core.jar"
 HADOOP_EXTRA_LIBS="/path/tohadoop/lib"
 HADOOP_CONF=$1
 
-if [ not -f $HADOOP_CORE ] ; then
+if [ ! -f $HADOOP_CORE ] ; then
   echo "$HADOOP_CORE not found"
   exit 1
 fi
 
-if [ -d $HADOOP_EXTRA_LIBS ] ; then
+if [ ! -d $HADOOP_EXTRA_LIBS ] ; then
   echo "$HADOOP_EXTRA_LIBS not found"
   exit 2
 fi
