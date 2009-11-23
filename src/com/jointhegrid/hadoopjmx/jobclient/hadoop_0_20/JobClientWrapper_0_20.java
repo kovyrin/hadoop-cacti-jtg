@@ -21,8 +21,6 @@ public class JobClientWrapper_0_20 extends JobClientWrapper {
   public JobClientWrapper_0_20(String[] s) {
 
     this.resources = s;
-    //Configuration conf = new Configuration();
-
     try {
       managedConfiguration = Class.forName("org.apache.hadoop.conf.Configuration").newInstance();
     } catch (Exception ex) {

@@ -4,6 +4,10 @@
  */
 package com.jointhegrid.hadoopjmx.jobclient;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+
 /**
  *
  * @author ecapriolo
@@ -32,8 +36,29 @@ public abstract class JobClientWrapper {
     return managedJobClient;
   }
 
-  public void outputClusterStatus(){
+  public void outputClusterStatus() {
     this.getClusterStatus().output();
+    System.out.print("jobsToCompleteSize:" + this.jobsToCompleteSize());
   }
-  
+
+  public int jobsToCompleteSize() {
+
+    try {
+      Method m = this.managedJobClient.getClass().getMethod("jobsToComplete", new Class[]{});
+      Object retObj = m.invoke(this.managedJobClient, new Object[]{});
+      if (retObj==null){
+        return 0;
+      }
+      if (retObj.getClass().isArray()) {
+        Field length = retObj.getClass().getField("length");
+        return length.getInt(retObj);
+      }
+    } catch (NullPointerException ex) {
+      return -77;
+    } catch (Exception ex) {
+      throw new UnsupportedOperationException(ex);
+    }
+    return -77;
+
+  }
 }

@@ -24,18 +24,21 @@ public class JobClientFactory {
   }
 
   public static void main(String[] args) {
+    String[] configs = null;
     if (args.length == 0) {
       System.err.println("wrong number of args " + " 0_19 confFile1 [conffile2...]");
-      System.exit(1);
+      //System.exit(1);
+    } else {
+      configs = new String[args.length - 1];
+      for (int i = 1; i < configs.length; ++i) {
+        configs[i - 1] = args[i];
+      }
     }
-    String[] configs = new String[args.length - 1];
-    for (int i = 1; i < configs.length; ++i) {
-      configs[i - 1] = args[i];
-    }
-
     String[] confs = new String[]{"/home/ecapriolo/hadoop-0.20.0/conf/mapred-site.xml"};
-    JobClientWrapper wrap = JobClientFactory.getJobClientWrapper(args[0], configs);
-    ClusterStatusWrapper csw = wrap.getClusterStatus();
-    csw.output();
+    //JobClientWrapper wrap = JobClientFactory.getJobClientWrapper(args[0], configs);
+    JobClientWrapper wrap = JobClientFactory.getJobClientWrapper("0_20", configs);
+    //ClusterStatusWrapper csw = wrap.getClusterStatus();
+    //csw.output();
+    wrap.outputClusterStatus();
   }
 }
