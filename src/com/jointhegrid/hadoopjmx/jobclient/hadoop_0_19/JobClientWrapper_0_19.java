@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
  */
 public class JobClientWrapper_0_19 extends JobClientWrapper{
 
-    protected Object managedConfiguration;
+  protected Object managedConfiguration;
   protected Object managedJobConf;
 
   public JobClientWrapper_0_19(String[] s) {
@@ -29,7 +29,7 @@ public class JobClientWrapper_0_19 extends JobClientWrapper{
     } catch (Exception ex) {
       throw new UnsupportedOperationException("Could not create configuration", ex);
     }
-
+    System.out.println(managedConfiguration.toString() );
     //conf.addResource("/home/ecapriolo/hadoop-0.20.0/conf/hdfs-site.xml");
     try {
       for (String res : this.resources) {
@@ -59,17 +59,17 @@ public class JobClientWrapper_0_19 extends JobClientWrapper{
       throw new UnsupportedOperationException("managedJobConf", ex);
     }
 
-    Constructor jcCon = null;
+    Constructor jcCon = null; 
     try {
       jcCon = Class.forName("org.apache.hadoop.mapred.JobClient")
-            .getConstructor(new Class[]{ managedJobConf.getClass() } );
+            .getConstructor( new Class[] { managedJobConf.getClass() } );
 
     }catch (Exception ex) {
       throw new UnsupportedOperationException("jobClient", ex);
     }
 
     try {
-      this.managedJobClient = jcCon.newInstance(new Object [] {this.managedJobConf});
+      this.managedJobClient = jcCon.newInstance(new Object [] { this.managedJobConf});
     } catch (Exception ex) {
       throw new UnsupportedOperationException("jobClient", ex);
     }

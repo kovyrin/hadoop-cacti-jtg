@@ -50,8 +50,7 @@ public abstract class JobClientWrapper {
         return 0;
       }
       if (retObj.getClass().isArray()) {
-        Field length = retObj.getClass().getField("length");
-        return length.getInt(retObj);
+        return java.lang.reflect.Array.getLength(retObj);
       }
     } catch (NullPointerException ex) {
       return -77;

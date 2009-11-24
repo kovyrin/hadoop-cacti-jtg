@@ -30,7 +30,7 @@ public class JobClientFactory {
       //System.exit(1);
     } else {
       configs = new String[args.length - 1];
-      for (int i = 1; i < configs.length; ++i) {
+      for (int i = 1; i < args.length; ++i) {
         configs[i - 1] = args[i];
       }
     }
