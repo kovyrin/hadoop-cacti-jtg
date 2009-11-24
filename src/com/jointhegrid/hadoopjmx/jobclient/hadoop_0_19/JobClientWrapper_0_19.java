@@ -29,7 +29,7 @@ public class JobClientWrapper_0_19 extends JobClientWrapper{
     } catch (Exception ex) {
       throw new UnsupportedOperationException("Could not create configuration", ex);
     }
-    System.out.println(managedConfiguration.toString() );
+    //System.out.println(managedConfiguration.toString() );
     //conf.addResource("/home/ecapriolo/hadoop-0.20.0/conf/hdfs-site.xml");
     try {
       for (String res : this.resources) {
