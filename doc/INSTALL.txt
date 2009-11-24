@@ -2,20 +2,24 @@ PreReq
 
 	Hadoop System
 		Hadoop (Tested with 0.19.1)
+    Hadoop (Tested with 0.20.x)
 
 	Cacti System
 		Cacti (Tested with 0.8.7d)
+    JRE (Pref JDK 1.6+)
 
 Installation
 
    Hadoop
      hadoop-metrics.properties
-       
+       Setup all metrics objects to use NullContextWithUpdateThread
+  
        dfs.class=org.apache.hadoop.metrics.spi.NullContextWithUpdateThread
        dfs.period=300
         
        jvm.class=org.apache.hadoop.metrics.spi.NullContextWithUpdateThread
        jvm.period=300	
+
      Enable JMX on Each Hadoop Node
         
         cd <hadoop>/conf
@@ -44,7 +48,12 @@ Installation
         ...
 
         Restart Hadoop
-   Cacti
+
+  Cacti
+
+    (These directions are for 0.19. You can follow the same steps for 0.20. Replace
+    0.19 with 0.20 where appropriate)
+
     cd /tmp
     svn co http://www.jointhegrid.com/svn/hadoop-cacti-jtg/trunk/
     cd hadoop-cacti-jtg
@@ -52,9 +61,25 @@ Installation
     cp dist/hadoop-cacti-jtg.jar <cacti_home>/scripts/
     cp scripts/*.sh hadoop-cacti-jtg
 
+    *JobClient Templates*
+    The JobClient Templates do NOT currently use JMX. They require
+    a minimal hadoop instalation for operation.
+
+    Download a Hadoop version matching your version
+    cd <cacti_home>/scripts/
+    wget http://mirror.candidhosting.com/pub/apache/hadoop/core/hadoop-0.19.2/hadoop-0.19.2.tar.gz
+    tar -xzf hadoop-0.19.2.tar.gz
+    ln -s hadoop-0.19.2 hadoop-0.19
+    ln -s hadoop-0.19/hadoop-0.19.2-core.jar hadoop-0.19/hadoop-0.19-core.jar
+    
+    (we do the symlinking so that JobClient.sh is simple)
+
+    Copy your hadoop-site.xml or your mapred-site.xml to <cacti_home>/scripts/
+
      Using your cacti web interface, go to the 'Import Template' section
-	   Import hadoop_namenode.xml. It was exported with deps.
-     Import hadoop_datanode.xml. It was exported with deps.
+	   Import cacti_templates/0_19/hadoop_namenode.xml. It was exported with deps.
+     Import cacti_templates/0_19/hadoop_datanode.xml. It was exported with deps.
+     Import cacti_templates/0_19/hadoop_datanode.xml. It was exported with deps.
 
 Testing
 
@@ -65,6 +90,10 @@ Testing
 
    Expected Result:
     CapacityTotal:2113748992 CapacityUsed:40960 CapacityRemaining:812830720 BlocksTotal:1 FilesTotal:9 numDeadDataNodes:0 numLiveDataNodes:1
+
+   cd <cacti_home>/scripts/0_19/jobclient
+   sh JobClient.sh hadoop-site.xml
+   mapTasks:1 maxMapTasks:2 reduceTasks:2 maxReduceTasks:2 jobsToCompleteSize:1
 
 Usage
 
