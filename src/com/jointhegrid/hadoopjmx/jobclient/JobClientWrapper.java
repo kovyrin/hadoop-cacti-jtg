@@ -137,15 +137,17 @@ public abstract class JobClientWrapper {
             prepCount++;
           if (intRunState.intValue()==runnConst.intValue())
             runnCount++;
+        } else {
         }
 
-        results.put("KILLED", killedCount);
-        results.put("SUCCEEDED", succCount);
-        results.put("FAILED", failedCount);
-        results.put("PREP", prepCount);
-        results.put("RUNNING", runnCount);
-
       }
+
+      results.put("KILLED", killedCount);
+      results.put("SUCCEEDED", succCount);
+      results.put("FAILED", failedCount);
+      results.put("PREP", prepCount);
+      results.put("RUNNING", runnCount);
+
     } catch (Exception ex){
       throw new UnsupportedOperationException(ex);
     }
@@ -159,5 +161,17 @@ public abstract class JobClientWrapper {
     for (String key: status.keySet()){
       System.out.print(key+":"+status.get(key)+" ");
     }
+  }
+  
+  public int printTime(long time){
+    java.util.GregorianCalendar gc = new java.util.GregorianCalendar();
+    gc.setTimeInMillis(time);
+    System.err.print(gc.get(gc.YEAR)+" " ); 
+     System.err.print(gc.get(gc.MONTH)+" " );
+     System.err.print(gc.get(gc.DATE)+" ");
+     System.err.print(gc.get(gc.HOUR_OF_DAY)+" " );
+     System.err.print(gc.get(gc.MINUTE)+" " );
+     System.err.print(gc.get(gc.SECOND)+" " );
+    return 0;
   }
 }
