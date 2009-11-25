@@ -35,7 +35,7 @@ public class JobClientFactory {
       }
     }
     String[] confs = new String[]{"/home/ecapriolo/hadoop-0.20.0/conf/mapred-site.xml"};
-    //JobClientWrapper wrap = JobClientFactory.getJobClientWrapper(args[0], configs);
+    //JobClientWrapper wrap = JobClientFactory.getJobClientWrapper("0_20", confs);
     JobClientWrapper wrap = JobClientFactory.getJobClientWrapper(args[0], configs);
     //ClusterStatusWrapper csw = wrap.getClusterStatus();
     //csw.output();
