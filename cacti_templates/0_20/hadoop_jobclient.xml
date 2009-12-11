@@ -1,4 +1,4 @@
-<cacti>
+<cacti>	
 	<hash_020018afbec57437fb6427e877c188789a0f02>
 		<name>Hadoop 20 JobClient</name>
 		<graph_templates>hash_0000187458ccfe96aeccc885005391a135bb72|hash_000018a8beae66e55a4d5de7067b7b0ac783e4|hash_0000189fb1115196cfd6bdc0713c6a2942b71a|hash_000018bb4b7b4a37854048bb3695f552642c87</graph_templates>
@@ -680,7 +680,7 @@
 			</hash_100018165ec736b0177d6d906d0d841b18b9d2>
 			<hash_100018a767be5d56a0a0e06eeae8e3f7bef02c>
 				<task_item_id>hash_0800181fd741c9fdfe48c112f5e2b78c009ccb</task_item_id>
-				<color_id>0</color_id>
+				<color_id>00B99B</color_id>
 				<alpha>FF</alpha>
 				<graph_type_id>8</graph_type_id>
 				<consolidation_function_id>1</consolidation_function_id>
