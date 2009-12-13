@@ -18,14 +18,14 @@ public class RegionServerStatistics extends JMXBase{
     super();
     this.objectName = "hadoop:service=RegionServer,name=RegionServerStatistics";
     this.wantedVariables = new String [] {
-    "storeFiles",
+    "storefiles",
     "blockCacheFree",
     "storefileIndexSizeMB",
     "memstoreSizeMB",
     "stores",
     "blockCacheCount",
     "regions",
-    "blockCacheHitCount",
+    "blockCacheHitRatio",
     "blockCacheSize",
     "atomicIncrementTimeNumOps",
     "atomicIncrementTimeAvgTime",
