@@ -25,3 +25,10 @@ define service {
   host_name                       HOSTNAMESHORT
   check_command                   check_remote_tasktracker!50060!50070
 }
+
+define service {
+  service_description             check_remote_hbase_region
+  use                             generic-service
+  host_name                       HOSTNAMESHORT
+  check_command                   check_remote_hbase_region!60030
+}
