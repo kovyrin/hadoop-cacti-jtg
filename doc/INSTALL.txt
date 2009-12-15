@@ -3,6 +3,7 @@ PreReq
 	Hadoop System
 		Hadoop (Tested with 0.19.1)
     Hadoop (Tested with 0.20.x)
+    HBase  (Tested with 0.20.x)
 
 	Cacti System
 		Cacti (Tested with 0.8.7d)
@@ -10,9 +11,14 @@ PreReq
 
 Installation
 
+   Hadoop-cacti-jtg gathers data by accessing JMX information. JMX support is
+   fairly easy to enable with hadoop.
+
    Hadoop
-     hadoop-metrics.properties
-       Setup all metrics objects to use NullContextWithUpdateThread
+     conf/hadoop-metrics.properties
+       Setup all metrics objects to use NullContextWithUpdateThread. The period
+       must match the period of your polling. For example my monitoring station
+       polls at 5 minute intervals. Thus I have set period to 300(seconds).
   
        dfs.class=org.apache.hadoop.metrics.spi.NullContextWithUpdateThread
        dfs.period=300
@@ -20,7 +26,13 @@ Installation
        jvm.class=org.apache.hadoop.metrics.spi.NullContextWithUpdateThread
        jvm.period=300	
 
-     Enable JMX on Each Hadoop Node
+   HBase
+      conf/hadoop-metrics.properties
+        Follow the same steps as above:
+          Replace NullContext with NullContextWithUpdateThread
+          Set the period to 300
+
+   Enable JMX on Each Hadoop Node
         
         cd <hadoop>/conf
         vi jmxremote.access
@@ -32,6 +44,7 @@ Installation
         controlRole     password
 
         chmod 600 jmxremote.password
+        chown $HADOOPUSER jxmremote.password
 
         vi hadoop.env
         ...
@@ -47,39 +60,31 @@ Installation
         export HADOOP_JOBTRACKER_OPTS="$HADOOP_JMX_BASE -Dcom.sun.management.jmxremote.port=10005"
         ...
 
-        Restart Hadoop
+        Restart Hadoop. If you have done this correctly you should notice your
+        system is not listening on ports 10001-10005. At this point you should
+        be able to use jconsole (found in your JDK bin) to connect to these ports
+        to test.
+
+  HBase
+
+        The process above is similar for HBase. Each HBase component has its own
+        variable like HBASE_REGIONSERVER_OPS inside hbase-env.sh. Change them
+        and restart.
 
   Cacti
 
-    (These directions are for 0.19. You can follow the same steps for 0.20. Replace
-    0.19 with 0.20 where appropriate)
+    Cacti requires shell scripts (kickoff/wrappers),
+    xml templates with the graph settings, and the compiled
+    hadoop-cacti-jtg.jar which has the Java "Fetch code".
+
+    Checkout the entire project and build it. This requires JAVAC, SVN and ANT.
 
     cd /tmp
     svn co http://www.jointhegrid.com/svn/hadoop-cacti-jtg/trunk/
     cd hadoop-cacti-jtg
     ant jar
     cp dist/hadoop-cacti-jtg.jar <cacti_home>/scripts/
-    cp scripts/*.sh hadoop-cacti-jtg
-
-    *JobClient Templates*
-    The JobClient Templates do NOT currently use JMX. They require
-    a minimal hadoop instalation for operation.
-
-    Download a Hadoop version matching your version
-    cd <cacti_home>/scripts/
-    wget http://mirror.candidhosting.com/pub/apache/hadoop/core/hadoop-0.19.2/hadoop-0.19.2.tar.gz
-    tar -xzf hadoop-0.19.2.tar.gz
-    ln -s hadoop-0.19.2 hadoop-0.19
-    ln -s hadoop-0.19/hadoop-0.19.2-core.jar hadoop-0.19/hadoop-0.19-core.jar
-    
-    (we do the symlinking so that JobClient.sh is simple)
-
-    Copy your hadoop-site.xml or your mapred-site.xml to <cacti_home>/scripts/
-
-     Using your cacti web interface, go to the 'Import Template' section
-	   Import cacti_templates/0_19/hadoop_namenode.xml. It was exported with deps.
-     Import cacti_templates/0_19/hadoop_datanode.xml. It was exported with deps.
-     Import cacti_templates/0_19/hadoop_datanode.xml. It was exported with deps.
+    cp -R scripts/* hadoop-cacti-jtg
 
 Testing
 
@@ -91,24 +96,56 @@ Testing
    Expected Result:
     CapacityTotal:2113748992 CapacityUsed:40960 CapacityRemaining:812830720 BlocksTotal:1 FilesTotal:9 numDeadDataNodes:0 numLiveDataNodes:1
 
-   cd <cacti_home>/scripts/0_19/jobclient
-   sh JobClient.sh hadoop-site.xml
-   mapTasks:1 maxMapTasks:2 reduceTasks:2 maxReduceTasks:2 jobsToCompleteSize:1
+
+JobClient Templates
+
+    The JobClient Templates do NOT currently use JMX. They require
+    a minimal hadoop instalation for operation.
+
+    Download a Hadoop version matching your version
+    cd <cacti_home>/scripts/
+    wget http://mirror.candidhosting.com/pub/apache/hadoop/core/hadoop-0.19.2/hadoop-0.19.2.tar.gz
+    tar -xzf hadoop-0.19.2.tar.gz
+    ln -s hadoop-0.19.2 hadoop-0.19
+    ln -s hadoop-0.19/hadoop-0.19.2-core.jar hadoop-0.19/hadoop-0.19-core.jar
+
+    We do the symlinking so that JobClient.sh is simple. We don't like
+    complicated shell scripts.
+
+  JobClient Testing
+
+    Copy your hadoop-site.xml or your mapred-site.xml to <cacti_home>/scripts/.
+    (The only variable that really needs to be set is the mapred.job.tracker
+    but taking the entire file is suggested)
+
+    cd <cacti_home>/scripts/0_19/jobclient
+    sh JobClient.sh hadoop-site.xml
+    mapTasks:1 maxMapTasks:2 reduceTasks:2 maxReduceTasks:2 jobsToCompleteSize:1
+
+Importing the Graph Templates into Cacti
+
+  Using your cacti web interface, go to the 'Import Template' section:
+	  Inside trunk/cacti_templates you will find folders 0_19 0_20...Inside these
+    folders you will find multiple XML files hadoop_namenode.xml,
+    hadoop_datanode.xml. Import each file.
+
+    Yes! We actually support multiple verions, the entire project is branched
+    internally. So one monitoring server can graph multiple clusters running
+    different major versions of Hadoop!
 
 Usage
 
-  Host Templates should exist in cacti
-  1 Hadoop NameNode
-  2 Hadoop DataNode
-
   Each graph takes three or four parameters. These would be the same
-  values specified in the testing section above. Some graphs require 
-  the controlRole. I use controlRole for all graphs.
+  values specified in the testing section above. 
 
   1 JMXURL
   2 user
   3 pass
   4 JMXObjectName (not always required)
+
+  In JMX controlRole is required to call JMX operations. The ONLY graph
+  'Live vs Dead DataNodes' calls the operations numLiveDataNodes() and 
+  numDeadDataNodes(). I always use the controlRole.
 
 Using JWalker
 
@@ -128,3 +165,9 @@ Support
 Contribute
 
 	Please do! Bugs, questions, comments, praise, condemnation Let me know!
+
+!!Screen Shots Accepted!!
+
+  If you want to show off a graph from Hadoop-Cacti-JTG, you can sanitize hostnames
+  (or not) and send it to me along with a comment.
+  I will be sure to add it to the site!

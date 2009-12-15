@@ -1,11 +1,11 @@
 Hadoop is under heavy development, JMX objects and attributes are appearing and
-vanishing. This monitoring implementation was target to be used by cacti. By
+vanishing. This monitoring implementation was targeted to be used by cacti. By
 design the classes return non zero status or throw exception. This was done to
 avoid complicated abstractions. 
 
-The likely cause of an error is a missing JMX variable. You can use the JWalker
-tool to probe your Hadoop systems. Then you can change the constructor of the
-effected object.
+The likely cause of an error is a missing JMX variable. You can use the JConsole
+or JWalker to probe your Hadoop systems. Then you can change the constructor of
+the effected object.
 
  public FSDatasetStatus(){
     wantedVariables = new String[] {
@@ -21,7 +21,7 @@ Project Organization
 
 Hadoop 0_20 has essentially the same JMX information as 0_19 however the object
 and attribute names have been changed. To deal with this the project has
-versioned all componenents. this was done because there is no useful
+versioned all componenents. This was done because there is no useful
 abstractions to deal with the JMX changes in hadoop. Also a user
 may want to monitor Hadoop 0_19_x and 0_20_x, having 'one version fits all'
 components would not be helpful in that case.
