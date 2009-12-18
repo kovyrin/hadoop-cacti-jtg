@@ -27,10 +27,19 @@ Installation
        jvm.period=300	
 
    HBase
+      HBase provides detailed instructions for JMX:
+      http://hadoop.apache.org/hbase/docs/current/metrics.html
+
       conf/hadoop-metrics.properties
-        Follow the same steps as above:
-          Replace NullContext with NullContextWithUpdateThread
-          Set the period to 300
+
+        hbase.class=org.apache.hadoop.metrics.spi.NullContextWithUpdateThread
+        hbase.period=300
+
+        jvm.class=org.apache.hadoop.metrics.spi.NullContextWithUpdateThread
+        jvm.period=300
+
+        rpc.class=org.apache.hadoop.metrics.spi.NullContextWithUpdateThread
+        rpc.period=300
 
    Enable JMX on Each Hadoop Node
         
@@ -40,8 +49,8 @@ Installation
         controlRole   readwrite
 
         vi jmxremote.password
-        monitorRole     passwd
-        controlRole     password
+        monitorRole     <your password>
+        controlRole     <your password>
 
         chmod 600 jmxremote.password
         chown $HADOOPUSER jxmremote.password
@@ -61,7 +70,7 @@ Installation
         ...
 
         Restart Hadoop. If you have done this correctly you should notice your
-        system is not listening on ports 10001-10005. At this point you should
+        system is now listening on ports 10001-10005. At this point you should
         be able to use jconsole (found in your JDK bin) to connect to these ports
         to test.
 
@@ -70,6 +79,47 @@ Installation
         The process above is similar for HBase. Each HBase component has its own
         variable like HBASE_REGIONSERVER_OPS inside hbase-env.sh. Change them
         and restart.
+ 
+        Again look here:
+        http://hadoop.apache.org/hbase/docs/current/metrics.html
+
+        
+    $HBASE_HOME/conf/hbase-env.sh
+
+    Add the lines:
+
+    JMX_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.ssl=false"
+    JMX_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.password.file=$HBASE_HOME/conf/jmxremote.passwd"
+    JMX_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.access.file=$HBASE_HOME/conf/jmxremote.access"
+
+    export HBASE_MASTER_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.port=10101"
+    export HBASE_REGIONSERVER_OPTS="$JMX_OPTS -Dcom.sun.management.jmxremote.port=10102"
+            
+
+    $HBASE_HOME/bin/hbase
+
+    Towards the end of the script, replace the lines:
+
+     # figure out which class to run
+    if [ "$COMMAND" = "shell" ] ; then
+      CLASS="org.jruby.Main ${HBASE_HOME}/bin/hirb.rb"
+    elif [ "$COMMAND" = "master" ] ; then
+      CLASS='org.apache.hadoop.hbase.master.HMaster'
+    elif [ "$COMMAND" = "regionserver" ] ; then
+      CLASS='org.apache.hadoop.hbase.regionserver.HRegionServer'
+            
+
+    with the lines: (adding the "HBASE_OPTS=..." lines for "master" and "regionserver" commands)
+
+     # figure out which class to run
+    if [ "$COMMAND" = "shell" ] ; then
+      CLASS="org.jruby.Main ${HBASE_HOME}/bin/hirb.rb"
+    elif [ "$COMMAND" = "master" ] ; then
+      CLASS='org.apache.hadoop.hbase.master.HMaster'
+      HBASE_OPTS="$HBASE_OPTS $HBASE_MASTER_OPTS"
+    elif [ "$COMMAND" = "regionserver" ] ; then
+      CLASS='org.apache.hadoop.hbase.regionserver.HRegionServer'
+      HBASE_OPTS="$HBASE_OPTS $HBASE_REGIONSERVER_OPTS"
 
   Cacti
 
