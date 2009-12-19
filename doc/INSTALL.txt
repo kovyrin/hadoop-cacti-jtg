@@ -130,11 +130,12 @@ Installation
     Checkout the entire project and build it. This requires JAVAC, SVN and ANT.
 
     cd /tmp
-    svn co http://www.jointhegrid.com/svn/hadoop-cacti-jtg/trunk/
+    svn co http://www.jointhegrid.com/svn/hadoop-cacti-jtg/trunk/hadoop-cacti-jtg
     cd hadoop-cacti-jtg
-    ant jar
+    ant jar 
+
     cp dist/hadoop-cacti-jtg.jar <cacti_home>/scripts/
-    cp -R scripts/* hadoop-cacti-jtg
+    cp -R scripts/* <cacti_home>/scripts/
 
 Testing
 
