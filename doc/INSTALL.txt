@@ -130,7 +130,7 @@ Installation
     Checkout the entire project and build it. This requires JAVAC, SVN and ANT.
 
     cd /tmp
-    svn co http://www.jointhegrid.com/svn/hadoop-cacti-jtg/trunk/hadoop-cacti-jtg
+    svn co http://www.jointhegrid.com/svn/hadoop-cacti-jtg/trunk/ hadoop-cacti-jtg
     cd hadoop-cacti-jtg
     ant jar 
 
@@ -139,10 +139,11 @@ Installation
 
 Testing
 
-   cd <cacti_home>/scripts/
+   cd <cacti_home>/scripts/0_20
    sh FSNamesystemStatus.sh \
      service:jmx:rmi:///jndi/rmi://10.0.1.2:10001/jmxrmi \
-     controlRole <yourpassword>
+     controlRole <yourpassword> \
+     hadoop:service=NameNode,name=FSNamesystemState
 
    Expected Result:
     CapacityTotal:2113748992 CapacityUsed:40960 CapacityRemaining:812830720 BlocksTotal:1 FilesTotal:9 numDeadDataNodes:0 numLiveDataNodes:1
