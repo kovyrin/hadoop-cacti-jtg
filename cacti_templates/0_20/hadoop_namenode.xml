@@ -1,4 +1,4 @@
-<cacti>
+<cacti>	
 	<hash_020018125d559dc6bd1363c4f4915b78744cd3>
 		<name>hadoop 20 NameNode</name>
 		<graph_templates>hash_000018638b68a452a2b06c48d6d7f83cadfed2|hash_000018b9bf9bf1f89b5e9530db5db6fc68f32c|hash_0000189d72c20b7e4bf4aca5a9e1cb701d92cf|hash_0000185656992b2f4c5fa1012ddb7408965da8|hash_0000183d50f962e9398c0a807ab8f685aa8889</graph_templates>
@@ -539,7 +539,7 @@
 				<task_item_id>hash_080018f1ba6329ca65553d6ead1ea991221875</task_item_id>
 				<color_id>00FF00</color_id>
 				<alpha>FF</alpha>
-				<graph_type_id>7</graph_type_id>
+				<graph_type_id>8</graph_type_id>
 				<consolidation_function_id>1</consolidation_function_id>
 				<cdef_id>0</cdef_id>
 				<value></value>
@@ -1111,7 +1111,7 @@
 				<t_rrd_heartbeat></t_rrd_heartbeat>
 				<rrd_heartbeat>600</rrd_heartbeat>
 				<t_data_input_field_id></t_data_input_field_id>
-				<data_input_field_id>hash_0700182b8d057befbb50a64b01f80caeaa4076</data_input_field_id>
+				<data_input_field_id>hash_0700185d239f8ab884a69858326dfa0f93656a</data_input_field_id>
 			</hash_080018f1ba6329ca65553d6ead1ea991221875>
 			<hash_0800180ef1353635749e13b1e2d0823437e6db>
 				<t_data_source_name></t_data_source_name>
@@ -1140,12 +1140,12 @@
 				<value></value>
 			</item_001>
 			<item_002>
-				<data_input_field_id>hash_070018b06d257adb7b80fc81fbb5add224bf38</data_input_field_id>
+				<data_input_field_id>hash_0700188984d8ec91d2813b231325062de623d6</data_input_field_id>
 				<t_value>on</t_value>
 				<value></value>
 			</item_002>
 			<item_003>
-				<data_input_field_id>hash_0700188984d8ec91d2813b231325062de623d6</data_input_field_id>
+				<data_input_field_id>hash_070018b06d257adb7b80fc81fbb5add224bf38</data_input_field_id>
 				<t_value>on</t_value>
 				<value></value>
 			</item_003>
