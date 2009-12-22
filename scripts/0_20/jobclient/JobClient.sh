@@ -3,7 +3,7 @@ JTG_CLASSNAME="com.jointhegrid.hadoopjmx.jobclient.JobClientFactory"
 
 HADOOP_VERSION="0_20"
 #change these to point at your hadoop path
-HADOOP_CORE="`dirname $0`/../../hadoop-0.19/hadoop-0.20-core.jar"
+HADOOP_CORE="`dirname $0`/../../hadoop-0.20/hadoop-0.20-core.jar"
 HADOOP_EXTRA_LIBS="`dirname $0`/../../hadoop-0.20/lib"
 HADOOP_CONF=$1
 
