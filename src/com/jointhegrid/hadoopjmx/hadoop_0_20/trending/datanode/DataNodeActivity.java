@@ -20,6 +20,8 @@ public class DataNodeActivity extends JMXBase {
     super();
     this.wantedVariables = new String [] { 
     "bytes_written", "bytes_read",
+    "block_verification_failures",
+    "blocks_verified",
     "copyBlockOpAvgTime","copyBlockOpMaxTime",
     "copyBlockOpMinTime","copyBlockOpNumOps",
     "heartBeatsAvgTime","heartBeatsMaxTime",
