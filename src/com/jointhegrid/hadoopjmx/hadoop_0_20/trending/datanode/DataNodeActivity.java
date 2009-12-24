@@ -18,7 +18,8 @@ import javax.management.ObjectName;
 public class DataNodeActivity extends JMXBase {
   public DataNodeActivity(){
     super();
-    this.wantedVariables = new String [] { "bytes_written",
+    this.wantedVariables = new String [] { 
+    "bytes_written", "bytes_read",
     "copyBlockOpAvgTime","copyBlockOpMaxTime",
     "copyBlockOpMinTime","copyBlockOpNumOps",
     "heartBeatsAvgTime","heartBeatsMaxTime",
