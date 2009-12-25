@@ -22,6 +22,17 @@ public class DataNodeActivity extends JMXBase {
     "bytes_written", "bytes_read",
     "block_verification_failures",
     "blocks_verified",
+    "blocks_read",
+    "blocks_written",
+    "blocks_replicated",
+    "blocks_removed",
+
+    "blockChecksumOpAvgTime","blockChecksumOpMaxTime",
+    "blockChecksumOpMinTime","blockChecksumOpNumOps",
+
+    "blockReportsOpAvgTime","blockReportsOpMaxTime",
+    "blockReportsOpMinTime","blockReportsOpNumOps",
+
     "copyBlockOpAvgTime","copyBlockOpMaxTime",
     "copyBlockOpMinTime","copyBlockOpNumOps",
     "heartBeatsAvgTime","heartBeatsMaxTime",
