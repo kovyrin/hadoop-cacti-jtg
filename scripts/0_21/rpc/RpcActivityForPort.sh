@@ -1,5 +1,5 @@
 JTG_CLASSPATH="`dirname $0`/../../hadoop-cacti-jtg.jar"
-JTG_CLASSNAME="com.jointhegrid.hadoopjmx.hadoop_0_20.trending.rpc.RpcActivityForPort"
+JTG_CLASSNAME="com.jointhegrid.hadoopjmx.hadoop_0_21.trending.rpc.RpcActivityForPort"
 
 jmxURL=$1
 user=$2
