@@ -1,5 +1,5 @@
 JTG_CLASSPATH="`dirname $0`/../../hadoop-cacti-jtg.jar"
-JTG_CLASSNAME="com.jointhegrid.hadoopjmx.hadoop_0_20.trending.datanode.FSDatasetState"
+JTG_CLASSNAME="com.jointhegrid.hadoopjmx.hadoop_0_21.trending.datanode.FSDatasetState"
 
 jmxURL=$1
 user=$2
