@@ -30,8 +30,8 @@ public class DataNodeActivity extends JMXBase {
     "blockChecksumOpAvgTime","blockChecksumOpMaxTime",
     "blockChecksumOpMinTime","blockChecksumOpNumOps",
 
-    "blockReportOpAvgTime","blockReportOpMaxTime",
-    "blockReportOpMinTime","blockReportOpNumOps",
+    "blockReportsAvgTime","blockReportsMaxTime",
+    "blockReportsMinTime","blockReportsNumOps",
 
     "copyBlockOpAvgTime","copyBlockOpMaxTime",
     "copyBlockOpMinTime","copyBlockOpNumOps",
