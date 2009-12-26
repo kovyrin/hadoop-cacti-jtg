@@ -1198,58 +1198,6 @@
 			<vertical_label></vertical_label>
 		</graph>
 		<items>
-			<hash_1000182796043d07242c9213f83c74eddca8b9>
-				<task_item_id>hash_08001890667614588be066cc7429bdde627690</task_item_id>
-				<color_id>FF7D00</color_id>
-				<alpha>FF</alpha>
-				<graph_type_id>5</graph_type_id>
-				<consolidation_function_id>1</consolidation_function_id>
-				<cdef_id>0</cdef_id>
-				<value></value>
-				<gprint_id>hash_060018e9c43831e54eca8069317a2ce8c6f751</gprint_id>
-				<text_format>blockReportsNumOps</text_format>
-				<hard_return></hard_return>
-				<sequence>1</sequence>
-			</hash_1000182796043d07242c9213f83c74eddca8b9>
-			<hash_10001857473209366f047ee61787cac85e4cc7>
-				<task_item_id>hash_08001890667614588be066cc7429bdde627690</task_item_id>
-				<color_id>0</color_id>
-				<alpha>FF</alpha>
-				<graph_type_id>9</graph_type_id>
-				<consolidation_function_id>4</consolidation_function_id>
-				<cdef_id>0</cdef_id>
-				<value></value>
-				<gprint_id>hash_060018e9c43831e54eca8069317a2ce8c6f751</gprint_id>
-				<text_format>Current:</text_format>
-				<hard_return></hard_return>
-				<sequence>2</sequence>
-			</hash_10001857473209366f047ee61787cac85e4cc7>
-			<hash_100018ba34baf7afdfc51e7b0e3e853f3ba981>
-				<task_item_id>hash_08001890667614588be066cc7429bdde627690</task_item_id>
-				<color_id>0</color_id>
-				<alpha>FF</alpha>
-				<graph_type_id>9</graph_type_id>
-				<consolidation_function_id>1</consolidation_function_id>
-				<cdef_id>0</cdef_id>
-				<value></value>
-				<gprint_id>hash_060018e9c43831e54eca8069317a2ce8c6f751</gprint_id>
-				<text_format>Average:</text_format>
-				<hard_return></hard_return>
-				<sequence>3</sequence>
-			</hash_100018ba34baf7afdfc51e7b0e3e853f3ba981>
-			<hash_1000186284a5a88c6b2fae15f819bc99be8630>
-				<task_item_id>hash_08001890667614588be066cc7429bdde627690</task_item_id>
-				<color_id>0</color_id>
-				<alpha>FF</alpha>
-				<graph_type_id>9</graph_type_id>
-				<consolidation_function_id>3</consolidation_function_id>
-				<cdef_id>0</cdef_id>
-				<value></value>
-				<gprint_id>hash_060018e9c43831e54eca8069317a2ce8c6f751</gprint_id>
-				<text_format>Maximum:</text_format>
-				<hard_return>on</hard_return>
-				<sequence>4</sequence>
-			</hash_1000186284a5a88c6b2fae15f819bc99be8630>
 			<hash_100018f34054f80f83a18a0c6dd0dd86327897>
 				<task_item_id>hash_0800186a085166e79a9b48ac1067b6e5ce4c39</task_item_id>
 				<color_id>FF0000</color_id>
@@ -1564,12 +1512,6 @@
 			</hash_100018f4c6944f88f987cbd319a24d0039c305>
 		</items>
 		<inputs>
-			<hash_0900188e9c40079f567ca97ae45655102b3eb2>
-				<name>Data Source [blockReportsNumOps]</name>
-				<description></description>
-				<column_name>task_item_id</column_name>
-				<items>hash_0000182796043d07242c9213f83c74eddca8b9|hash_00001857473209366f047ee61787cac85e4cc7|hash_000018ba34baf7afdfc51e7b0e3e853f3ba981|hash_0000186284a5a88c6b2fae15f819bc99be8630</items>
-			</hash_0900188e9c40079f567ca97ae45655102b3eb2>
 			<hash_0900189d279ecbc38f7d02c03991953ca418f3>
 				<name>Data Source [copyBlockOpNumOps]</name>
 				<description></description>
