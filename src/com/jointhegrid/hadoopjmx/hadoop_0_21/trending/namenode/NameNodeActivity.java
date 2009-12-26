@@ -5,7 +5,6 @@
 
 package com.jointhegrid.hadoopjmx.hadoop_0_21.trending.namenode;
 
-import com.jointhegrid.hadoopjmx.hadoop_0_21.trending.namenode.*;
 import com.jointhegrid.hadoopjmx.JMXBase;
 import com.jointhegrid.hadoopjmx.JMXBaseException;
 
@@ -16,14 +15,30 @@ import com.jointhegrid.hadoopjmx.JMXBaseException;
 public class NameNodeActivity extends JMXBase {
   public NameNodeActivity(){
     this.wantedVariables = new String [] {
-    "AddBlockOps", "BlocksCorrupted", "CreateFileOps",
-    "DeleteFileOps" , "FilesAppended" , "FilesCreated",
-    "FilesRenamed" , "GetBlockLocations" , "GetListingOps" ,
+    "AddBlockOps", 
+    "BlocksCorrupted",
+    "CreateFileOps",
+    "DeleteFileOps" , 
+    "FilesAppended" ,
+    "FilesCreated",
+    "FilesRenamed" , 
+    "GetBlockLocations" ,
+    "GetListingOps" ,
     "JournalTransactionsBatchedInSync",
-    "SafemodeTime", "fsImageLoadTime",
-    "SyncsAvgTime", "SyncsMaxTime", "SyncsMinTime", "SyncsNumOps",
-    "TransactionsAvgTime", "TransactionsMaxTime", "TransactionsMinTime", "TransactionsNumOps",
-    "blockReportAvgTime", "blockReportMaxTime", "blockReportMinTime", "blockReportNumOps"
+    "SafemodeTime", 
+    "fsImageLoadTime",
+    "SyncsAvgTime",
+    "SyncsMaxTime",
+    "SyncsMinTime",
+    "SyncsNumOps",
+    "TransactionsAvgTime",
+    "TransactionsMaxTime",
+    "TransactionsMinTime",
+    "TransactionsNumOps",
+    "blockReportAvgTime",
+    "blockReportMaxTime",
+    "blockReportMinTime",
+    "blockReportNumOps"
     };
   }
 

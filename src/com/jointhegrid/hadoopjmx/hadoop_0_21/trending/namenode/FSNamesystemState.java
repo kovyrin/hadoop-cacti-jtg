@@ -5,7 +5,6 @@
 
 package com.jointhegrid.hadoopjmx.hadoop_0_21.trending.namenode;
 
-import com.jointhegrid.hadoopjmx.hadoop_0_21.trending.namenode.*;
 import com.jointhegrid.hadoopjmx.JMXBase;
 import com.jointhegrid.hadoopjmx.JMXBaseException;
 
@@ -19,7 +18,9 @@ public class FSNamesystemState extends JMXBase {
     super();
     this.wantedVariables = new String[] {
       "BlocksTotal",
-      "CapacityRemaining", "CapacityTotal", "CapacityUsed" ,
+      "CapacityRemaining", 
+      "CapacityTotal",
+      "CapacityUsed" ,
       "FSState",
       "FilesTotal",
       "PendingReplicationBlocks",
