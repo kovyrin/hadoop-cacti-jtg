@@ -73,41 +73,47 @@ public class JMXBase {
 
   public JMXBase(MBeanServerConnection conn){
     this();
-    connection=conn;
+    connection = conn;
   }
 
   public void fetch() throws JMXBaseException {
-    if (connection == null){
+    if (connection == null) {
       makeConnection();
     }
     //if we have data we are re-fetching it
     this.wantedVarResults.clear();
     this.wantedOperResults.clear();
 
+    Object theResult = null;
     for (String var:this.wantedVariables){
-      Object theResult= getObjectAttribute(this.objectName,var);
+      try {
+        theResult = getObjectAttribute(this.objectName, var);
+      } catch (JMXBaseException e) {
+          System.err.println("Invalid attribute: " + var);
+          throw e;
+      }
       this.wantedVarResults.put(var, theResult);
     }
 
     for (String op : wantedOperations) {
-      Object theResult = invokeOperation(this.objectName,op);
-      this.wantedOperResults.put(op,theResult);
+      try {
+        theResult = invokeOperation(this.objectName, op);
+      } catch(JMXBaseException e) {
+        System.err.println("Invalid operation: " + op);
+        throw e;
+      }
+      this.wantedOperResults.put(op, theResult);
     }
-
   }
 
   public void output() throws JMXBaseException {
-    
     for (String var:this.wantedVariables){
-      System.out.print( 
-              output.output(var, this.getWantedVarResultsRO().get(var) ) );
+      System.out.print(output.output(var, this.getWantedVarResultsRO().get(var)));
     }
 
     for (String op : wantedOperations) {
-      System.out.println(
-              output.output(op, this.getWantedOperResultsRO().get(op) ) );
+      System.out.println(output.output(op, this.getWantedOperResultsRO().get(op)));
     }
-
   }
 
   public Object invokeOperation( String objectName, String operation)
