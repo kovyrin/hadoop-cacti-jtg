@@ -42,28 +42,30 @@ public class DataNodeActivity extends JMXBase {
       "copyBlockOpMaxTime",
       "copyBlockOpMinTime",
       "copyBlockOpNumOps",
+
       "heartBeatsAvgTime",
       "heartBeatsMaxTime",
       "heartBeatsMinTime",
       "heartBeatsNumOps",
+
       "readBlockOpAvgTime",
       "readBlockOpMaxTime",
       "readBlockOpMinTime",
       "readBlockOpNumOps",
-      "readMetadataOpAvgTime",
-      "readMetadataOpMaxTime",
-      "readMetadataOpMinTime",
-      "readMetadataOpNumOps",
+
       "reads_from_local_client",
       "reads_from_remote_client",
+
       "replaceBlockOpAvgTime",
       "replaceBlockOpMaxTime",
       "replaceBlockOpMinTime",
       "replaceBlockOpNumOps",
+
       "writeBlockOpAvgTime",
       "writeBlockOpMaxTime",
       "writeBlockOpMinTime",
       "writeBlockOpNumOps",
+
       "writes_from_local_client",
       "writes_from_remote_client"
     };
